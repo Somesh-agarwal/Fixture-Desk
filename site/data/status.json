@@ -1,6 +1,6 @@
 {
- "last_run": "1 Oct 2026, 18:24 BST",
- "last_run_utc": "2026-10-01T17:24:26Z",
+ "last_run": "1 Oct 2026, 18:28 BST",
+ "last_run_utc": "2026-10-01T17:28:51Z",
  "failed": [
   "football-data.org",
   "CricketData.org",
@@ -38,103 +38,97 @@
    "name": "Wikipedia: 2026 BWF World Tour",
    "ok": false,
    "count": 0,
-   "note": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
+   "note": "RuntimeError: AI service reply was not readable: OK\r\n"
   },
   {
    "name": "Wikipedia: 2026 Diamond League athletics",
    "ok": false,
    "count": 0,
-   "note": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
+   "note": "RuntimeError: AI service reply was not readable: OK\r\n"
   },
   {
    "name": "Wikipedia: 2026 ATP Tour",
    "ok": false,
    "count": 0,
-   "note": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
+   "note": "RuntimeError: AI service reply was not readable: OK\r\n"
   },
   {
    "name": "Wikipedia: 2026 WTA Tour",
    "ok": false,
    "count": 0,
-   "note": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
-  },
-  {
-   "name": "Wikipedia: 2025–26 Men's FIH Pro League",
-   "ok": true,
-   "count": 0,
-   "note": "no dates in the tracking window"
+   "note": "RuntimeError: AI service reply was not readable: OK\r\n"
   },
   {
    "name": "Wikipedia: 2026 World Wrestling Championships",
    "ok": false,
    "count": 0,
-   "note": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
+   "note": "RuntimeError: AI service reply was not readable: OK\r\n"
   },
   {
    "name": "Wikipedia: 2026 ISSF World Cup shooting",
    "ok": false,
    "count": 0,
-   "note": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
+   "note": "RuntimeError: AI service reply was not readable: OK\r\n"
   },
   {
    "name": "Wikipedia: 2026-27 Indian Super League season",
    "ok": false,
    "count": 0,
-   "note": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
+   "note": "RuntimeError: AI service reply was not readable: OK\r\n"
   },
   {
    "name": "Wikipedia: 2026 end-of-year rugby union internationals",
    "ok": false,
    "count": 0,
-   "note": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
+   "note": "RuntimeError: AI service reply was not readable: OK\r\n"
   },
   {
    "name": "Wikipedia: FIDE World Cup chess 2027 OR 2026 chess tournament calendar",
    "ok": false,
    "count": 0,
-   "note": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
+   "note": "RuntimeError: AI service reply was not readable: OK\r\n"
   },
   {
    "name": "News: BBC Sport",
    "ok": true,
-   "count": 77,
+   "count": 2,
    "note": ""
   },
   {
    "name": "News: BBC Sport Cricket",
    "ok": true,
-   "count": 39,
+   "count": 3,
    "note": ""
   },
   {
    "name": "News: BBC Sport Football",
    "ok": true,
-   "count": 45,
+   "count": 4,
    "note": ""
   },
   {
    "name": "News: Google News: Indian sport",
    "ok": true,
-   "count": 100,
+   "count": 3,
    "note": ""
   },
   {
    "name": "News: Google News: Indian cricket",
    "ok": true,
-   "count": 97,
+   "count": 4,
    "note": ""
   },
   {
    "name": "News: Google News: sport controversy",
    "ok": true,
-   "count": 61,
+   "count": 3,
    "note": ""
   },
   {
    "name": "AI debate summary",
    "ok": false,
    "count": 0,
-   "note": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
+   "note": "RuntimeError: AI service reply was not readable: OK\r\n"
   }
  ],
  "ai_calls": 10,
