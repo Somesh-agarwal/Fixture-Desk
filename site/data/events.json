@@ -1,644 +1,413 @@
 {
- "note": "SAMPLE DATA - illustrative only. Real fixtures replace these once collection is switched on.",
+ "generated_utc": "2026-10-01T17:24:26Z",
+ "note": "Collected automatically from the sources listed on each event.",
  "events": [
   {
-   "sample": true,
-   "watch": {
-    "uk": "Not verified yet",
-    "in": "Not verified yet"
-   },
-   "sources": [
-    {
-     "name": "BCCI fixtures page",
-     "url": "https://www.bcci.tv",
-     "tier": "Official"
-    }
-   ],
-   "disruption": null,
-   "conflict": null,
-   "result": {
-    "summary": "Sample result: India Women won by 6 wickets, taking the series 2–1.",
-    "winner": "India Women",
-    "perf": [
-     "Sample batter: 71* off 48 balls",
-     "Sample bowler: 3/19 in 4 overs"
-    ],
-    "records": [
-     "Sample milestone: first home T20I series win over this opponent"
-    ],
-    "turning": "Two wickets in the 14th over swung the chase.",
-    "standings": "Series won 2–1.",
-    "insights": [
-     "Spin took 7 of the 10 wickets.",
-     "The chase was paced through the middle overs rather than the powerplay.",
-     "Fielding errors cost the visitors roughly 15 runs."
-    ],
-    "sources": [
-     {
-      "name": "Official scorecard (example)",
-      "url": "https://www.bcci.tv"
-     }
-    ]
-   },
-   "debate": {
-    "trigger": "A third-umpire run-out decision in the 17th over.",
-    "views": [
-     {
-      "kind": "fact",
-      "text": "The decision was referred to the third umpire and given out."
-     },
-     {
-      "kind": "opinion",
-      "text": "Some commentators argued the replay angles were inconclusive."
-     },
-     {
-      "kind": "opinion",
-      "text": "Others said the playing conditions were applied correctly."
-     }
-    ],
-    "sources": [
-     {
-      "name": "Match report (example)",
-      "url": "https://www.icc-cricket.com"
-     }
-    ],
-    "note": "Sample debate. Real summaries link to each original post or report."
-   },
-   "id": "s01",
-   "sport": "Cricket",
-   "comp": "Women's T20I series (sample)",
-   "round": "3rd T20I",
-   "parts": [
-    "India Women",
-    "Australia Women"
-   ],
-   "start_london": "2026-09-27 14:00",
-   "mins": 210,
-   "venue": "Mumbai",
-   "country": "India",
-   "regions": [
-    "india",
-    "global"
-   ],
-   "link": "https://www.bcci.tv",
-   "verified": "2026-09-26",
-   "status": "Summary Published"
-  },
-  {
-   "sample": true,
-   "watch": {
-    "uk": "Not verified yet",
-    "in": "Not verified yet"
-   },
-   "sources": [
-    {
-     "name": "Premier League fixtures",
-     "url": "https://www.premierleague.com",
-     "tier": "Official"
-    }
-   ],
-   "disruption": null,
-   "conflict": null,
-   "result": {
-    "summary": "Sample result: Sample City 2–1 Sample United.",
-    "winner": "Sample City",
-    "perf": [
-     "Sample forward: 1 goal, 1 assist"
-    ],
-    "records": [],
-    "turning": "A 78th-minute winner from a set piece.",
-    "standings": "Sample City move to 2nd.",
-    "insights": [
-     "Both goals came from set pieces.",
-     "Sample United led on possession but had fewer shots on target.",
-     "A third straight home win for Sample City."
-    ],
-    "sources": [
-     {
-      "name": "Official match centre (example)",
-      "url": "https://www.premierleague.com"
-     }
-    ]
-   },
-   "debate": null,
-   "id": "s02",
-   "sport": "Football",
-   "comp": "Premier League (sample)",
-   "round": "Matchweek 6",
-   "parts": [
-    "Sample City",
-    "Sample United"
-   ],
-   "start_london": "2026-09-27 17:30",
-   "mins": 115,
-   "venue": "Manchester",
-   "country": "United Kingdom",
-   "regions": [
-    "uk"
-   ],
-   "link": "https://www.premierleague.com",
-   "verified": "2026-09-25",
-   "status": "Result Verified"
-  },
-  {
-   "sample": true,
+   "sample": false,
    "watch": {
     "uk": null,
     "in": null
    },
-   "sources": [
-    {
-     "name": "BWF tournament calendar",
-     "url": "https://bwfbadminton.com",
-     "tier": "Official"
-    }
-   ],
-   "disruption": null,
-   "conflict": null,
-   "result": {
-    "summary": "Sample result: Sample Player (IND) won 21–17, 19–21, 21–15.",
-    "winner": "Sample Player (IND)",
-    "perf": [],
-    "records": [
-     "Sample milestone: first Super 750 title"
-    ],
-    "turning": "",
-    "standings": "",
-    "insights": [
-     "The deciding game turned on a run of six points from 11–11.",
-     "A first final at this level for the winner.",
-     "Rankings points confirmed only when BWF publishes the next ranking list."
-    ],
-    "sources": [
-     {
-      "name": "BWF results (example)",
-      "url": "https://bwfbadminton.com"
-     }
-    ]
-   },
-   "debate": null,
-   "id": "s03",
-   "sport": "Badminton",
-   "comp": "BWF World Tour Super 750 (sample)",
-   "round": "Men's singles final",
-   "parts": [
-    "Sample Player (IND)",
-    "Sample Player (DEN)"
-   ],
-   "start_london": "2026-09-28 06:00",
-   "mins": 90,
-   "venue": "Tokyo",
-   "country": "Japan",
-   "regions": [
-    "india",
-    "global"
-   ],
-   "link": "https://bwfbadminton.com",
-   "verified": "2026-09-27",
-   "status": "Result Verified"
-  },
-  {
-   "sample": true,
-   "watch": {
-    "uk": null,
-    "in": null
-   },
-   "sources": [
-    {
-     "name": "FIH match schedule",
-     "url": "https://www.fih.hockey",
-     "tier": "Official"
-    }
-   ],
    "disruption": null,
    "conflict": null,
    "result": null,
    "debate": null,
-   "id": "s04",
-   "sport": "Hockey",
-   "comp": "FIH Pro League (sample)",
-   "round": "Group match",
-   "parts": [
-    "India",
-    "Great Britain"
-   ],
-   "start_london": "2026-09-30 13:30",
-   "mins": 110,
-   "venue": "Bhubaneswar",
-   "country": "India",
-   "regions": [
-    "india",
-    "uk",
-    "global"
-   ],
-   "link": "https://www.fih.hockey",
-   "verified": "2026-09-29",
-   "status": "Scheduled"
-  },
-  {
-   "sample": true,
-   "watch": {
-    "uk": null,
-    "in": null
-   },
-   "sources": [
-    {
-     "name": "BCCI domestic fixtures",
-     "url": "https://www.bcci.tv",
-     "tier": "Official"
-    }
-   ],
-   "disruption": null,
-   "conflict": null,
-   "result": null,
-   "debate": null,
-   "id": "s05",
-   "sport": "Cricket",
-   "comp": "Ranji Trophy (sample)",
-   "round": "Elite group, Day 1",
-   "parts": [
-    "Sample Mumbai",
-    "Sample Karnataka"
-   ],
-   "start_london": "2026-10-01 04:00",
-   "mins": 420,
-   "venue": "Mumbai",
-   "country": "India",
-   "regions": [
-    "india"
-   ],
-   "link": "https://www.bcci.tv",
-   "verified": "2026-09-30",
-   "status": "Scheduled"
-  },
-  {
-   "sample": true,
-   "watch": {
-    "uk": "Not verified yet",
-    "in": "Not verified yet"
-   },
-   "sources": [
-    {
-     "name": "UEFA fixtures",
-     "url": "https://www.uefa.com",
-     "tier": "Official"
-    }
-   ],
-   "disruption": null,
-   "conflict": null,
-   "result": null,
-   "debate": null,
-   "id": "s06",
-   "sport": "Football",
-   "comp": "UEFA Champions League (sample)",
-   "round": "League phase, Matchday 2",
-   "parts": [
-    "Sample London FC",
-    "Sample Madrid"
-   ],
-   "start_london": "2026-10-01 20:00",
-   "mins": 115,
-   "venue": "London",
-   "country": "United Kingdom",
-   "regions": [
-    "uk",
-    "global"
-   ],
-   "link": "https://www.uefa.com",
-   "verified": "2026-09-30",
-   "status": "Scheduled"
-  },
-  {
-   "sample": true,
-   "watch": {
-    "uk": null,
-    "in": null
-   },
-   "sources": [
-    {
-     "name": "ISL fixtures",
-     "url": "https://www.indiansuperleague.com",
-     "tier": "Official"
-    }
-   ],
-   "disruption": null,
-   "conflict": null,
-   "result": null,
-   "debate": null,
-   "id": "s07",
-   "sport": "Football",
-   "comp": "Indian Super League (sample)",
-   "round": "Round 3",
-   "parts": [
-    "Sample Kolkata FC",
-    "Sample Goa FC"
-   ],
-   "start_london": "2026-10-03 15:00",
-   "mins": 115,
-   "venue": "Kolkata",
-   "country": "India",
-   "regions": [
-    "india"
-   ],
-   "link": "https://www.indiansuperleague.com",
-   "verified": "2026-09-30",
-   "status": "Scheduled"
-  },
-  {
-   "sample": true,
-   "watch": {
-    "uk": null,
-    "in": null
-   },
-   "sources": [
-    {
-     "name": "World Athletics calendar",
-     "url": "https://worldathletics.org",
-     "tier": "Official"
-    }
-   ],
-   "disruption": null,
-   "conflict": null,
-   "result": null,
-   "debate": null,
-   "id": "s08",
-   "sport": "Athletics",
-   "comp": "Road running (sample)",
-   "round": "Elite women",
-   "parts": [
-    "Elite field incl. Sample Runner (GBR)"
-   ],
-   "start_london": "2026-10-04 09:00",
-   "mins": 170,
-   "venue": "London",
-   "country": "United Kingdom",
-   "regions": [
-    "uk",
-    "global"
-   ],
-   "link": "https://worldathletics.org",
-   "verified": "2026-09-28",
-   "status": "Scheduled"
-  },
-  {
-   "sample": true,
-   "watch": {
-    "uk": null,
-    "in": null
-   },
-   "sources": [
-    {
-     "name": "ECB fixtures",
-     "url": "https://www.ecb.co.uk",
-     "tier": "Official"
-    },
-    {
-     "name": "Published fixture list (example)",
-     "url": "https://www.bcci.tv",
-     "tier": "Fixture list"
-    }
-   ],
-   "disruption": null,
-   "conflict": "Sources disagree on start time: official page lists 11:00, a fixtures list shows 10:30 (London). Check the official link before relying on either.",
-   "result": null,
-   "debate": null,
-   "id": "s09",
-   "sport": "Cricket",
-   "comp": "Test series (sample)",
-   "round": "1st Test, Day 1",
-   "parts": [
-    "England",
-    "India"
-   ],
-   "start_london": "2026-10-08 11:00",
-   "mins": 420,
-   "venue": "London",
-   "country": "United Kingdom",
-   "regions": [
-    "india",
-    "uk",
-    "global"
-   ],
-   "link": "https://www.ecb.co.uk",
-   "verified": "2026-09-29",
-   "status": "Needs Review"
-  },
-  {
-   "sample": true,
-   "watch": {
-    "uk": null,
-    "in": null
-   },
-   "sources": [
-    {
-     "name": "FIDE calendar",
-     "url": "https://www.fide.com",
-     "tier": "Official"
-    }
-   ],
-   "disruption": null,
-   "conflict": null,
-   "result": null,
-   "debate": null,
-   "id": "s10",
-   "sport": "Chess",
-   "comp": "FIDE event (sample)",
-   "round": "Round 5",
-   "parts": [
-    "Sample GM (IND)",
-    "Sample GM (NOR)"
-   ],
-   "start_london": "2026-10-12 14:00",
-   "mins": 300,
-   "venue": "Madrid",
-   "country": "Spain",
-   "regions": [
-    "india",
-    "global"
-   ],
-   "link": "https://www.fide.com",
-   "verified": "2026-09-30",
-   "status": "Scheduled"
-  },
-  {
-   "sample": true,
-   "watch": {
-    "uk": null,
-    "in": null
-   },
-   "sources": [
-    {
-     "name": "ISSF calendar",
-     "url": "https://www.issf-sports.org",
-     "tier": "Official"
-    }
-   ],
-   "disruption": "Postponed. New date not yet announced.",
-   "conflict": null,
-   "result": null,
-   "debate": null,
-   "id": "s11",
-   "sport": "Shooting",
-   "comp": "ISSF World Cup Final (sample)",
-   "round": "10m air rifle men",
-   "parts": [
-    "Sample Shooter (IND)"
-   ],
-   "start_london": "2026-10-15 08:00",
+   "time_tbc": false,
    "mins": 120,
-   "venue": "Doha",
-   "country": "Qatar",
-   "regions": [
-    "india",
-    "global"
+   "venue": "Baku City Circuit",
+   "country": "Azerbaijan",
+   "round": "Round 15, Azerbaijan Grand Prix (Race)",
+   "status": "Needs Review",
+   "notes": [
+    "No result found three days after the expected finish."
    ],
-   "link": "https://www.issf-sports.org",
-   "verified": "2026-09-30",
-   "status": "Needs Review"
-  },
-  {
-   "sample": true,
-   "watch": {
-    "uk": "Not verified yet",
-    "in": "Not verified yet"
-   },
-   "sources": [
-    {
-     "name": "F1 schedule",
-     "url": "https://www.formula1.com",
-     "tier": "Official"
-    }
-   ],
-   "disruption": null,
-   "conflict": null,
-   "result": null,
-   "debate": null,
-   "id": "s12",
+   "uid": "f1-2026-15-race",
+   "source_id": "f1",
    "sport": "Motorsport",
-   "comp": "Formula 1 (sample)",
-   "round": "Grand Prix race",
+   "comp": "Formula 1 World Championship",
    "parts": [
     "Full grid"
    ],
-   "start_london": "2026-10-18 20:00",
+   "start_utc": "2026-09-26T11:00:00Z",
+   "regions": [
+    "uk",
+    "global"
+   ],
+   "link": "https://www.formula1.com/en/racing/2026.html",
+   "sources": [
+    {
+     "name": "Jolpica F1 data service",
+     "url": "https://api.jolpi.ca/ergast/f1/current.json",
+     "tier": "Data service"
+    },
+    {
+     "name": "Formula 1 official calendar",
+     "url": "https://www.formula1.com/en/racing/2026.html",
+     "tier": "Official"
+    }
+   ],
+   "verified": "2026-10-01",
+   "first_seen": "2026-10-01"
+  },
+  {
+   "sample": false,
+   "watch": {
+    "uk": null,
+    "in": null
+   },
+   "disruption": null,
+   "conflict": null,
+   "result": null,
+   "debate": null,
+   "time_tbc": false,
    "mins": 120,
-   "venue": "Austin",
-   "country": "United States",
+   "venue": "Sepang International Circuit",
+   "country": "Malaysia",
+   "round": "Round 16, Bahrain Grand Prix in Malaysia (Race)",
+   "status": "Scheduled",
+   "notes": [],
+   "uid": "f1-2026-16-race",
+   "source_id": "f1",
+   "sport": "Motorsport",
+   "comp": "Formula 1 World Championship",
+   "parts": [
+    "Full grid"
+   ],
+   "start_utc": "2026-10-04T07:00:00Z",
    "regions": [
     "uk",
     "global"
    ],
-   "link": "https://www.formula1.com",
-   "verified": "2026-09-30",
-   "status": "Scheduled"
+   "link": "https://www.formula1.com/en/racing/2026.html",
+   "sources": [
+    {
+     "name": "Jolpica F1 data service",
+     "url": "https://api.jolpi.ca/ergast/f1/current.json",
+     "tier": "Data service"
+    },
+    {
+     "name": "Formula 1 official calendar",
+     "url": "https://www.formula1.com/en/racing/2026.html",
+     "tier": "Official"
+    }
+   ],
+   "verified": "2026-10-01",
+   "first_seen": "2026-10-01"
   },
   {
-   "sample": true,
+   "sample": false,
    "watch": {
     "uk": null,
     "in": null
    },
-   "sources": [
-    {
-     "name": "UWW event page",
-     "url": "https://uww.org",
-     "tier": "Official"
-    }
-   ],
-   "disruption": "Rescheduled from 20 Oct (confirmed by organiser).",
-   "conflict": null,
-   "result": null,
-   "debate": null,
-   "id": "s13",
-   "sport": "Wrestling",
-   "comp": "UWW World Championships (sample)",
-   "round": "Women's 57kg final",
-   "parts": [
-    "Sample Wrestler (IND)"
-   ],
-   "start_london": "2026-10-21 17:00",
-   "mins": 60,
-   "venue": "Belgrade",
-   "country": "Serbia",
-   "regions": [
-    "india",
-    "global"
-   ],
-   "link": "https://uww.org",
-   "verified": "2026-09-30",
-   "status": "Scheduled"
-  },
-  {
-   "sample": true,
-   "watch": {
-    "uk": null,
-    "in": null
-   },
-   "sources": [
-    {
-     "name": "ATP tournament page",
-     "url": "https://www.atptour.com",
-     "tier": "Official"
-    }
-   ],
    "disruption": null,
    "conflict": null,
    "result": null,
    "debate": null,
-   "id": "s14",
-   "sport": "Tennis",
-   "comp": "ATP 500 (sample)",
-   "round": "Final",
+   "time_tbc": false,
+   "mins": 45,
+   "venue": "Marina Bay Street Circuit",
+   "country": "Singapore",
+   "round": "Round 17, Singapore Grand Prix (Sprint)",
+   "status": "Scheduled",
+   "notes": [],
+   "uid": "f1-2026-17-sprint",
+   "source_id": "f1",
+   "sport": "Motorsport",
+   "comp": "Formula 1 World Championship",
    "parts": [
-    "To be decided"
+    "Full grid"
    ],
-   "start_london": "2026-10-25 13:00",
-   "mins": 150,
-   "venue": "Vienna",
-   "country": "Austria",
-   "regions": [
-    "global"
-   ],
-   "link": "https://www.atptour.com",
-   "verified": "2026-09-30",
-   "status": "Scheduled"
-  },
-  {
-   "sample": true,
-   "watch": {
-    "uk": null,
-    "in": null
-   },
-   "sources": [
-    {
-     "name": "England Rugby fixtures",
-     "url": "https://www.englandrugby.com",
-     "tier": "Official"
-    }
-   ],
-   "disruption": null,
-   "conflict": null,
-   "result": null,
-   "debate": null,
-   "id": "s15",
-   "sport": "Rugby union",
-   "comp": "Autumn internationals (sample)",
-   "round": "Test match",
-   "parts": [
-    "England",
-    "New Zealand"
-   ],
-   "start_london": "2026-11-07 15:10",
-   "mins": 110,
-   "venue": "London",
-   "country": "United Kingdom",
+   "start_utc": "2026-10-10T09:00:00Z",
    "regions": [
     "uk",
     "global"
    ],
-   "link": "https://www.englandrugby.com",
-   "verified": "2026-09-30",
-   "status": "Scheduled"
+   "link": "https://www.formula1.com/en/racing/2026.html",
+   "sources": [
+    {
+     "name": "Jolpica F1 data service",
+     "url": "https://api.jolpi.ca/ergast/f1/current.json",
+     "tier": "Data service"
+    },
+    {
+     "name": "Formula 1 official calendar",
+     "url": "https://www.formula1.com/en/racing/2026.html",
+     "tier": "Official"
+    }
+   ],
+   "verified": "2026-10-01",
+   "first_seen": "2026-10-01"
+  },
+  {
+   "sample": false,
+   "watch": {
+    "uk": null,
+    "in": null
+   },
+   "disruption": null,
+   "conflict": null,
+   "result": null,
+   "debate": null,
+   "time_tbc": false,
+   "mins": 120,
+   "venue": "Marina Bay Street Circuit",
+   "country": "Singapore",
+   "round": "Round 17, Singapore Grand Prix (Race)",
+   "status": "Scheduled",
+   "notes": [],
+   "uid": "f1-2026-17-race",
+   "source_id": "f1",
+   "sport": "Motorsport",
+   "comp": "Formula 1 World Championship",
+   "parts": [
+    "Full grid"
+   ],
+   "start_utc": "2026-10-11T12:00:00Z",
+   "regions": [
+    "uk",
+    "global"
+   ],
+   "link": "https://www.formula1.com/en/racing/2026.html",
+   "sources": [
+    {
+     "name": "Jolpica F1 data service",
+     "url": "https://api.jolpi.ca/ergast/f1/current.json",
+     "tier": "Data service"
+    },
+    {
+     "name": "Formula 1 official calendar",
+     "url": "https://www.formula1.com/en/racing/2026.html",
+     "tier": "Official"
+    }
+   ],
+   "verified": "2026-10-01",
+   "first_seen": "2026-10-01"
+  },
+  {
+   "sample": false,
+   "watch": {
+    "uk": null,
+    "in": null
+   },
+   "disruption": null,
+   "conflict": null,
+   "result": null,
+   "debate": null,
+   "time_tbc": false,
+   "mins": 120,
+   "venue": "Circuit of the Americas",
+   "country": "USA",
+   "round": "Round 18, United States Grand Prix (Race)",
+   "status": "Scheduled",
+   "notes": [],
+   "uid": "f1-2026-18-race",
+   "source_id": "f1",
+   "sport": "Motorsport",
+   "comp": "Formula 1 World Championship",
+   "parts": [
+    "Full grid"
+   ],
+   "start_utc": "2026-10-25T20:00:00Z",
+   "regions": [
+    "uk",
+    "global"
+   ],
+   "link": "https://www.formula1.com/en/racing/2026.html",
+   "sources": [
+    {
+     "name": "Jolpica F1 data service",
+     "url": "https://api.jolpi.ca/ergast/f1/current.json",
+     "tier": "Data service"
+    },
+    {
+     "name": "Formula 1 official calendar",
+     "url": "https://www.formula1.com/en/racing/2026.html",
+     "tier": "Official"
+    }
+   ],
+   "verified": "2026-10-01",
+   "first_seen": "2026-10-01"
+  },
+  {
+   "sample": false,
+   "watch": {
+    "uk": null,
+    "in": null
+   },
+   "disruption": null,
+   "conflict": null,
+   "result": null,
+   "debate": null,
+   "time_tbc": false,
+   "mins": 120,
+   "venue": "Autódromo Hermanos Rodríguez",
+   "country": "Mexico",
+   "round": "Round 19, Mexico City Grand Prix (Race)",
+   "status": "Scheduled",
+   "notes": [],
+   "uid": "f1-2026-19-race",
+   "source_id": "f1",
+   "sport": "Motorsport",
+   "comp": "Formula 1 World Championship",
+   "parts": [
+    "Full grid"
+   ],
+   "start_utc": "2026-11-01T20:00:00Z",
+   "regions": [
+    "uk",
+    "global"
+   ],
+   "link": "https://www.formula1.com/en/racing/2026.html",
+   "sources": [
+    {
+     "name": "Jolpica F1 data service",
+     "url": "https://api.jolpi.ca/ergast/f1/current.json",
+     "tier": "Data service"
+    },
+    {
+     "name": "Formula 1 official calendar",
+     "url": "https://www.formula1.com/en/racing/2026.html",
+     "tier": "Official"
+    }
+   ],
+   "verified": "2026-10-01",
+   "first_seen": "2026-10-01"
+  },
+  {
+   "sample": false,
+   "watch": {
+    "uk": null,
+    "in": null
+   },
+   "disruption": null,
+   "conflict": null,
+   "result": null,
+   "debate": null,
+   "time_tbc": false,
+   "mins": 120,
+   "venue": "Autódromo José Carlos Pace",
+   "country": "Brazil",
+   "round": "Round 20, Brazilian Grand Prix (Race)",
+   "status": "Scheduled",
+   "notes": [],
+   "uid": "f1-2026-20-race",
+   "source_id": "f1",
+   "sport": "Motorsport",
+   "comp": "Formula 1 World Championship",
+   "parts": [
+    "Full grid"
+   ],
+   "start_utc": "2026-11-08T17:00:00Z",
+   "regions": [
+    "uk",
+    "global"
+   ],
+   "link": "https://www.formula1.com/en/racing/2026.html",
+   "sources": [
+    {
+     "name": "Jolpica F1 data service",
+     "url": "https://api.jolpi.ca/ergast/f1/current.json",
+     "tier": "Data service"
+    },
+    {
+     "name": "Formula 1 official calendar",
+     "url": "https://www.formula1.com/en/racing/2026.html",
+     "tier": "Official"
+    }
+   ],
+   "verified": "2026-10-01",
+   "first_seen": "2026-10-01"
+  },
+  {
+   "sample": false,
+   "watch": {
+    "uk": null,
+    "in": null
+   },
+   "disruption": null,
+   "conflict": null,
+   "result": null,
+   "debate": null,
+   "time_tbc": false,
+   "mins": 120,
+   "venue": "Las Vegas Strip Street Circuit",
+   "country": "USA",
+   "round": "Round 21, Las Vegas Grand Prix (Race)",
+   "status": "Scheduled",
+   "notes": [],
+   "uid": "f1-2026-21-race",
+   "source_id": "f1",
+   "sport": "Motorsport",
+   "comp": "Formula 1 World Championship",
+   "parts": [
+    "Full grid"
+   ],
+   "start_utc": "2026-11-22T04:00:00Z",
+   "regions": [
+    "uk",
+    "global"
+   ],
+   "link": "https://www.formula1.com/en/racing/2026.html",
+   "sources": [
+    {
+     "name": "Jolpica F1 data service",
+     "url": "https://api.jolpi.ca/ergast/f1/current.json",
+     "tier": "Data service"
+    },
+    {
+     "name": "Formula 1 official calendar",
+     "url": "https://www.formula1.com/en/racing/2026.html",
+     "tier": "Official"
+    }
+   ],
+   "verified": "2026-10-01",
+   "first_seen": "2026-10-01"
+  },
+  {
+   "sample": false,
+   "watch": {
+    "uk": null,
+    "in": null
+   },
+   "disruption": null,
+   "conflict": null,
+   "result": null,
+   "debate": null,
+   "time_tbc": false,
+   "mins": 120,
+   "venue": "Lusail International Circuit",
+   "country": "Qatar",
+   "round": "Round 22, Qatar Grand Prix (Race)",
+   "status": "Scheduled",
+   "notes": [],
+   "uid": "f1-2026-22-race",
+   "source_id": "f1",
+   "sport": "Motorsport",
+   "comp": "Formula 1 World Championship",
+   "parts": [
+    "Full grid"
+   ],
+   "start_utc": "2026-11-29T16:00:00Z",
+   "regions": [
+    "uk",
+    "global"
+   ],
+   "link": "https://www.formula1.com/en/racing/2026.html",
+   "sources": [
+    {
+     "name": "Jolpica F1 data service",
+     "url": "https://api.jolpi.ca/ergast/f1/current.json",
+     "tier": "Data service"
+    },
+    {
+     "name": "Formula 1 official calendar",
+     "url": "https://www.formula1.com/en/racing/2026.html",
+     "tier": "Official"
+    }
+   ],
+   "verified": "2026-10-01",
+   "first_seen": "2026-10-01"
   }
  ]
 }

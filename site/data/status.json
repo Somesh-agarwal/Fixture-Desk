@@ -1,1 +1,142 @@
-{"last_run": null, "failed": [], "note": "No automated collection has run yet."}
+{
+ "last_run": "1 Oct 2026, 18:24 BST",
+ "last_run_utc": "2026-10-01T17:24:26Z",
+ "failed": [
+  "football-data.org",
+  "CricketData.org",
+  "Wikipedia: 2026 BWF World Tour",
+  "Wikipedia: 2026 Diamond League athletics",
+  "Wikipedia: 2026 ATP Tour",
+  "Wikipedia: 2026 WTA Tour",
+  "Wikipedia: 2026 World Wrestling Championships",
+  "Wikipedia: 2026 ISSF World Cup shooting",
+  "Wikipedia: 2026-27 Indian Super League season",
+  "Wikipedia: 2026 end-of-year rugby union internationals",
+  "Wikipedia: FIDE World Cup chess 2027 OR 2026 chess tournament calendar",
+  "AI debate summary"
+ ],
+ "sources": [
+  {
+   "name": "Formula 1 (Jolpica)",
+   "ok": true,
+   "count": 9,
+   "note": ""
+  },
+  {
+   "name": "football-data.org",
+   "ok": false,
+   "count": 0,
+   "note": "Waiting for the free key (repository secret FOOTBALL_DATA_KEY)."
+  },
+  {
+   "name": "CricketData.org",
+   "ok": false,
+   "count": 0,
+   "note": "Waiting for the free key (repository secret CRICKETDATA_KEY)."
+  },
+  {
+   "name": "Wikipedia: 2026 BWF World Tour",
+   "ok": false,
+   "count": 0,
+   "note": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
+  },
+  {
+   "name": "Wikipedia: 2026 Diamond League athletics",
+   "ok": false,
+   "count": 0,
+   "note": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
+  },
+  {
+   "name": "Wikipedia: 2026 ATP Tour",
+   "ok": false,
+   "count": 0,
+   "note": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
+  },
+  {
+   "name": "Wikipedia: 2026 WTA Tour",
+   "ok": false,
+   "count": 0,
+   "note": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
+  },
+  {
+   "name": "Wikipedia: 2025–26 Men's FIH Pro League",
+   "ok": true,
+   "count": 0,
+   "note": "no dates in the tracking window"
+  },
+  {
+   "name": "Wikipedia: 2026 World Wrestling Championships",
+   "ok": false,
+   "count": 0,
+   "note": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
+  },
+  {
+   "name": "Wikipedia: 2026 ISSF World Cup shooting",
+   "ok": false,
+   "count": 0,
+   "note": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
+  },
+  {
+   "name": "Wikipedia: 2026-27 Indian Super League season",
+   "ok": false,
+   "count": 0,
+   "note": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
+  },
+  {
+   "name": "Wikipedia: 2026 end-of-year rugby union internationals",
+   "ok": false,
+   "count": 0,
+   "note": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
+  },
+  {
+   "name": "Wikipedia: FIDE World Cup chess 2027 OR 2026 chess tournament calendar",
+   "ok": false,
+   "count": 0,
+   "note": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
+  },
+  {
+   "name": "News: BBC Sport",
+   "ok": true,
+   "count": 77,
+   "note": ""
+  },
+  {
+   "name": "News: BBC Sport Cricket",
+   "ok": true,
+   "count": 39,
+   "note": ""
+  },
+  {
+   "name": "News: BBC Sport Football",
+   "ok": true,
+   "count": 45,
+   "note": ""
+  },
+  {
+   "name": "News: Google News: Indian sport",
+   "ok": true,
+   "count": 100,
+   "note": ""
+  },
+  {
+   "name": "News: Google News: Indian cricket",
+   "ok": true,
+   "count": 97,
+   "note": ""
+  },
+  {
+   "name": "News: Google News: sport controversy",
+   "ok": true,
+   "count": 61,
+   "note": ""
+  },
+  {
+   "name": "AI debate summary",
+   "ok": false,
+   "count": 0,
+   "note": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
+  }
+ ],
+ "ai_calls": 10,
+ "event_count": 9
+}
