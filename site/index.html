@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f6f6a">
+<meta name="description" content="Personal India, UK and Global sports calendar in London time.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Fixture Desk">
+<title>Fixture Desk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+html{color-scheme:light}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+/* Layout: fixture-board header, segmented section bar, then a single working column of time-led fixture rows */
+:root{
+  --bg:#edf0f3; --surface:#ffffff; --sunk:#f5f7f9; --ink:#131c26; --muted:#5b6876; --line:#d6dde4;
+  --accent:#0f6f6a; --accent-soft:#dcefed; --accent-ink:#ffffff;
+  --in:#c96a00; --uk:#1f3f8f; --gl:#0f6f6a;
+  --ok:#1d7a3e; --ok-soft:#e1f2e6; --warn:#a15c00; --warn-soft:#fcefd9; --bad:#b4232c; --bad-soft:#fbe3e4; --info:#3e5873; --info-soft:#e5ecf3;
+  --sample:#7a3fb0; --sample-soft:#f0e7f9;
+  --f-display:"Barlow Condensed","Arial Narrow",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --r:8px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0d131a; --surface:#151e28; --sunk:#111922; --ink:#e5ecf2; --muted:#94a3b3; --line:#27333f;
+  --accent:#43bfb3; --accent-soft:#16312f; --accent-ink:#06201e;
+  --in:#f0a23a; --uk:#8fa9ff; --gl:#43bfb3;
+  --ok:#5fcf86; --ok-soft:#14301d; --warn:#f0b04f; --warn-soft:#33260f; --bad:#ff7d84; --bad-soft:#3a1719; --info:#9fb6cf; --info-soft:#1b2734;
+  --sample:#c79bf2; --sample-soft:#2a1d38; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0d131a; --surface:#151e28; --sunk:#111922; --ink:#e5ecf2; --muted:#94a3b3; --line:#27333f;
+  --accent:#43bfb3; --accent-soft:#16312f; --accent-ink:#06201e;
+  --in:#f0a23a; --uk:#8fa9ff; --gl:#43bfb3;
+  --ok:#5fcf86; --ok-soft:#14301d; --warn:#f0b04f; --warn-soft:#33260f; --bad:#ff7d84; --bad-soft:#3a1719; --info:#9fb6cf; --info-soft:#1b2734;
+  --sample:#c79bf2; --sample-soft:#2a1d38; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.5}
+a{color:var(--accent)}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:980px;margin:0 auto;padding-inline:16px;padding-block:0 48px}
+header.top{padding-block:20px 12px;display:grid;gap:10px}
+.brand{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brand h1{font-family:var(--f-display);font-weight:700;font-size:2.1rem;letter-spacing:.02em;text-transform:uppercase;margin:0;line-height:1}
+.brand h1 span{color:var(--accent)}
+.clock{font-family:var(--f-mono);font-size:.82rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.banner{display:flex;gap:10px;align-items:flex-start;background:var(--sample-soft);color:var(--ink);border:1px solid color-mix(in srgb,var(--sample) 40%,transparent);border-radius:var(--r);padding:10px 12px;font-size:.85rem}
+.banner b{color:var(--sample)}
+.health{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.8rem;color:var(--muted)}
+.health span b{color:var(--ink);font-weight:500}
+.regions{display:flex;gap:4px;border-bottom:2px solid var(--line);margin-top:6px}
+.regions button{background:none;border:0;padding:10px 14px 8px;font-family:var(--f-display);font-weight:600;font-size:1.15rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;display:flex;align-items:center;gap:8px}
+.regions button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--rc)}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--rc);display:inline-block;flex:none}
+.sections{display:flex;gap:6px;flex-wrap:wrap;padding-block:12px}
+.seg{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:.88rem;cursor:pointer}
+.seg[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.toolbar{display:grid;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.row > *{min-width:0}
+input[type=search],input[type=text],select,textarea{background:var(--sunk);border:1px solid var(--line);border-radius:6px;padding:7px 10px}
+input[type=search]{flex:1 1 220px}
+select{flex:0 1 auto;max-width:100%}
+.btn{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:6px 12px;cursor:pointer;font-size:.88rem}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:600}
+.btn.small{padding:3px 9px;font-size:.8rem}
+.navdate{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.navdate .label{font-family:var(--f-display);font-weight:600;font-size:1.3rem;letter-spacing:.03em;min-width:0;text-wrap:balance}
+.chk{display:flex;align-items:center;gap:6px;font-size:.88rem}
+.daygroup{margin-top:18px}
+.dayhead{display:flex;align-items:baseline;gap:10px;font-family:var(--f-display);font-weight:600;text-transform:uppercase;letter-spacing:.07em;font-size:1rem;color:var(--muted);border-bottom:1px solid var(--line);padding-bottom:4px;margin-bottom:8px}
+.dayhead.today{color:var(--accent)}
+.dayhead small{font-family:var(--f-body);text-transform:none;letter-spacing:0;font-weight:400;font-size:.8rem}
+.empty{color:var(--muted);font-size:.88rem;padding:6px 0 4px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);margin-bottom:8px;overflow:hidden}
+.card > button.sum{all:unset;box-sizing:border-box;cursor:pointer;display:grid;grid-template-columns:5.2rem 1fr auto;gap:12px;align-items:start;padding:12px;width:100%}
+.card > button.sum:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.time{font-family:var(--f-mono);font-variant-numeric:tabular-nums;font-size:1.05rem;font-weight:500;line-height:1.2}
+.time small{display:block;font-size:.7rem;color:var(--muted);letter-spacing:.05em}
+.what{min-width:0}
+.what .title{font-weight:600;line-height:1.3}
+.what .meta{color:var(--muted);font-size:.84rem;margin-top:2px}
+.tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:6px;align-items:center}
+.chip{font-size:.72rem;letter-spacing:.04em;text-transform:uppercase;border-radius:4px;padding:1px 6px;background:var(--sunk);border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+.chip.sample{background:var(--sample-soft);border-color:transparent;color:var(--sample);font-weight:600}
+.chip.disr{background:var(--warn-soft);color:var(--warn);border-color:transparent;font-weight:600}
+.side{display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+.pill{font-size:.74rem;font-weight:600;border-radius:999px;padding:2px 9px;white-space:nowrap}
+.st-scheduled{background:var(--info-soft);color:var(--info)}
+.st-awaiting{background:var(--warn-soft);color:var(--warn)}
+.st-verified{background:var(--ok-soft);color:var(--ok)}
+.st-published{background:var(--accent-soft);color:var(--accent)}
+.st-review{background:var(--bad-soft);color:var(--bad)}
+.rdots{display:flex;gap:4px}
+.detail{border-top:1px solid var(--line);padding:12px;display:grid;gap:14px;background:var(--sunk)}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px 18px}
+.kv div{min-width:0}
+.kv dt{font-size:.72rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
+.kv dd{margin:2px 0 0;font-size:.9rem;overflow-wrap:anywhere}
+.unv{color:var(--muted);font-style:italic}
+.block h4{font-family:var(--f-display);font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:.95rem;margin:0 0 6px}
+.block ul{margin:0;padding-left:1.1rem}
+.block li{margin-bottom:3px}
+.note{border-left:3px solid var(--bad);padding:6px 10px;background:var(--bad-soft);font-size:.86rem;border-radius:0 6px 6px 0}
+.note.warn{border-color:var(--warn);background:var(--warn-soft)}
+.parts{display:flex;gap:6px;flex-wrap:wrap}
+.fav{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:2px 10px;font-size:.82rem;cursor:pointer}
+.fav[aria-pressed="true"]{border-color:var(--warn);color:var(--warn);font-weight:600}
+.view{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-start}
+.kind{font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border-radius:3px;padding:0 5px;margin-right:4px}
+.k-fact{background:var(--ok-soft);color:var(--ok)}
+.k-opinion{background:var(--info-soft);color:var(--info)}
+.k-allegation{background:var(--warn-soft);color:var(--warn)}
+/* month grid */
+.mgrid-wrap{overflow-x:auto;margin-top:14px}
+.mgrid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;min-width:320px}
+.mgrid .wd{font-size:.72rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);text-align:center;padding:2px 0}
+.mcell{all:unset;box-sizing:border-box;cursor:pointer;background:var(--surface);border:1px solid var(--line);border-radius:6px;min-height:88px;padding:5px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.mcell:focus-visible{outline:2px solid var(--accent)}
+.mcell.out{opacity:.45}
+.mcell.today{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.mcell .n{font-family:var(--f-mono);font-size:.78rem;color:var(--muted)}
+.mcell .ev{font-size:.72rem;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border-left:3px solid var(--rc);padding-left:4px}
+.mcell .more{font-size:.7rem;color:var(--muted)}
+@media (max-width:560px){
+  .mcell{min-height:56px}
+  .mcell .ev{display:none}
+  .mcell .cnt{display:block}
+  .card > button.sum{grid-template-columns:4.4rem 1fr;}
+  .side{grid-column:1 / -1;flex-direction:row;justify-content:flex-start;align-items:center}
+  .brand h1{font-size:1.8rem}
+  .regions button{padding:8px 10px 6px;font-size:1.02rem}
+}
+.cnt{display:none;font-family:var(--f-mono);font-size:.78rem;color:var(--accent);font-weight:500}
+/* panels */
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin-top:12px}
+.panel h2{font-family:var(--f-display);font-weight:700;letter-spacing:.04em;text-transform:uppercase;font-size:1.45rem;margin:0 0 4px}
+.panel h3{font-family:var(--f-display);font-weight:600;letter-spacing:.05em;text-transform:uppercase;font-size:1.08rem;margin:18px 0 6px}
+.panel p.lead{color:var(--muted);margin:0 0 12px;max-width:68ch}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:6px}
+table{border-collapse:collapse;width:100%;font-size:.84rem}
+th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);background:var(--sunk);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+textarea{width:100%;min-height:110px;resize:vertical;font-family:var(--f-mono);font-size:.82rem}
+textarea.plain{font-family:var(--f-body);font-size:.9rem;min-height:80px}
+.report{display:grid;gap:4px}
+.report section{border-top:1px solid var(--line);padding-top:10px;margin-top:8px}
+.report h3{margin-top:0}
+.report .src{font-size:.78rem;color:var(--muted)}
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:.8rem}
+.flow .arr{color:var(--muted)}
+.req{border:1px solid var(--line);border-radius:6px;padding:10px;display:grid;gap:6px;background:var(--sunk)}
+.req .h{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:.8rem;color:var(--muted)}
+.list{display:grid;gap:8px;margin-top:10px}
+.msg{font-size:.86rem;padding:8px 10px;border-radius:6px;background:var(--accent-soft);margin-top:8px}
+.msg.err{background:var(--bad-soft)}
+code{font-family:var(--f-mono);font-size:.82em;background:var(--sunk);padding:0 4px;border-radius:3px}
+@media (prefers-reduced-motion:no-preference){.detail{animation:drop .16s ease-out}@keyframes drop{from{opacity:.4;transform:translateY(-3px)}to{opacity:1;transform:none}}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+<header class="top">
+  <div class="brand">
+    <h1>Fixture <span>Desk</span></h1>
+    <div class="clock" id="clock"></div>
+  </div>
+  <div class="banner" role="note"><div><b>Sample data.</b> Every fixture, result and debate on this page is illustrative and marked <span class="chip sample">Sample</span>. Nothing here is a verified schedule. Real fixtures arrive once source collection is switched on in stage 2.</div></div>
+  <div class="health" id="health"></div>
+  <div class="regions" role="tablist" aria-label="Region">
+    <button role="tab" data-region="india" style="--rc:var(--in)"><i class="dot"></i>India</button>
+    <button role="tab" data-region="uk" style="--rc:var(--uk)"><i class="dot"></i>UK</button>
+    <button role="tab" data-region="global" style="--rc:var(--gl)"><i class="dot"></i>Global</button>
+  </div>
+</header>
+
+<nav class="sections" aria-label="Sections">
+  <button class="seg" data-sec="calendar">Calendar</button>
+  <button class="seg" data-sec="reports">Reports</button>
+  <button class="seg" data-sec="sources">Sources &amp; import</button>
+  <button class="seg" data-sec="improve">Improve My Tracker</button>
+</nav>
+
+<main>
+<section id="sec-calendar">
+  <div class="toolbar">
+    <div class="row">
+      <div class="navdate">
+        <button class="btn" id="prev" aria-label="Previous">‹</button>
+        <button class="btn" id="today">Today</button>
+        <button class="btn" id="next" aria-label="Next">›</button>
+        <span class="label" id="rangeLabel"></span>
+      </div>
+      <span style="flex:1"></span>
+      <div class="row" role="group" aria-label="View">
+        <button class="seg" data-view="day">Day</button>
+        <button class="seg" data-view="week">Week</button>
+        <button class="seg" data-view="month">Month</button>
+      </div>
+    </div>
+    <div class="row">
+      <input type="search" id="q" placeholder="Search teams, athletes, competitions, venues" aria-label="Search">
+      <select id="fSport" aria-label="Sport"></select>
+      <select id="fCountry" aria-label="Host country"></select>
+      <select id="fComp" aria-label="Competition"></select>
+      <label class="chk"><input type="checkbox" id="fFav"> Favourites only</label>
+    </div>
+    <div class="row" id="favRow" style="font-size:.82rem;color:var(--muted)"></div>
+  </div>
+  <div id="calendar"></div>
+</section>
+
+<section id="sec-reports" hidden>
+  <div class="panel">
+    <h2>Reports</h2>
+    <p class="lead">Built only from records in the tracker for the selected London-local period. Gaps are stated, never filled. Reports cover all three regions; each line shows which tabs it belongs to.</p>
+    <div class="row">
+      <div class="row" role="group" aria-label="Report period">
+        <button class="seg" data-rep="daily">Daily</button>
+        <button class="seg" data-rep="weekly">Weekly</button>
+        <button class="seg" data-rep="monthly">Monthly</button>
+      </div>
+      <span style="flex:1"></span>
+      <button class="btn" id="repPrev" aria-label="Previous period">‹</button>
+      <button class="btn" id="repNow">Current</button>
+      <button class="btn" id="repNext" aria-label="Next period">›</button>
+      <button class="btn" id="repCopy">Copy as text</button>
+    </div>
+    <div id="report" class="report" style="margin-top:12px"></div>
+  </div>
+</section>
+
+<section id="sec-sources" hidden>
+  <div class="panel">
+    <h2>Sources</h2>
+    <p class="lead">Candidate free sources, official first. None has been fetched yet. In stage 2 each one is checked for a public calendar or RSS feed and for its terms and robots.txt before any scheduled fetch is added. Sources that block automated access stay on manual import.</p>
+    <div class="tablewrap"><table id="srcTable"></table></div>
+    <h3>Status workflow</h3>
+    <div class="flow">
+      <span class="pill st-scheduled">Scheduled</span><span class="arr">→</span>
+      <span class="pill st-awaiting">Awaiting Result</span><span class="arr">→</span>
+      <span class="pill st-verified">Result Verified</span><span class="arr">→</span>
+      <span class="pill st-published">Summary Published</span>
+      <span class="arr" style="margin-left:8px">any stage can drop to</span><span class="pill st-review">Needs Review</span>
+    </div>
+    <p class="lead" style="margin-top:8px">A fixture moves to Awaiting Result automatically once its expected finish time passes. It only reaches Result Verified when an official results page confirms it. Postponed, cancelled, abandoned and rescheduled fixtures carry a warning tag and go to Needs Review until a new date is confirmed.</p>
+    <div class="row"><button class="btn" id="recheck">Re-check statuses now</button><span class="clock" id="recheckMsg"></span></div>
+  </div>
+  <div class="panel">
+    <h2>Manual import</h2>
+    <p class="lead">Paste CSV or an iCalendar (.ics) feed, or choose a file. Imports are checked for duplicates and conflicting times, then held as Needs Review until you confirm the schedule against the official link.</p>
+    <p class="lead" style="font-size:.84rem">CSV columns: <code>date,time_london,sport,competition,round,participants,venue,country,regions,official_link</code>. Separate participants with <code>;</code> and regions with <code>;</code> (india, uk, global). Times are London local.</p>
+    <textarea id="impText" aria-label="Paste CSV or ICS">date,time_london,sport,competition,round,participants,venue,country,regions,official_link
+2026-11-14,14:00,Football,Sample Cup (sample),Quarter-final,Sample Rovers;Sample Athletic,Leeds,United Kingdom,uk,https://www.thefa.com
+2026-10-08,10:30,Cricket,Test series (sample),"1st Test, Day 1",England;India,London,United Kingdom,india;uk;global,https://www.ecb.co.uk</textarea>
+    <div class="row" style="margin-top:8px">
+      <button class="btn primary" id="impRun">Check and import</button>
+      <label class="btn" for="impFile" style="cursor:pointer">Choose file…</label>
+      <input type="file" id="impFile" accept=".csv,.ics,text/csv,text/calendar" hidden>
+      <button class="btn" id="impClear">Remove my imports</button>
+    </div>
+    <div id="impMsg"></div>
+  </div>
+</section>
+
+<section id="sec-improve" hidden>
+  <div class="panel">
+    <h2>Improve My Tracker</h2>
+    <p class="lead">Ask in plain words: add a sport or competition, follow an athlete or team, correct a detail, or change the design. Requests wait here for your approval. Nothing in the tracker changes until an approved request is built in.</p>
+    <div class="row">
+      <select id="reqType" aria-label="Request type">
+        <option>Add sport or competition</option><option>Follow athlete or team</option><option>Correct information</option><option>Design change</option><option>Other</option>
+      </select>
+    </div>
+    <textarea class="plain" id="reqText" placeholder="e.g. Track the Ranji Trophy knockouts and add Neeraj Chopra's Diamond League meets" style="margin-top:8px" aria-label="Request"></textarea>
+    <div class="row" style="margin-top:8px"><button class="btn primary" id="reqAdd">Submit request</button><button class="btn" id="reqCopy">Copy all as JSON</button></div>
+    <p class="lead" style="font-size:.8rem;margin-top:8px">In this preview, requests are kept in this browser only. Once hosted, each request is saved to the tracker's repository so it survives across devices.</p>
+    <div class="list" id="reqList"></div>
+  </div>
+</section>
+</main>
+</div>
+
+<script>
+(function(){
+const TZ='Europe/London';
+const fmtKey=new Intl.DateTimeFormat('en-CA',{timeZone:TZ,year:'numeric',month:'2-digit',day:'2-digit'});
+const fmtHM=new Intl.DateTimeFormat('en-GB',{timeZone:TZ,hour:'2-digit',minute:'2-digit',hourCycle:'h23',timeZoneName:'short'});
+const fmtParts=new Intl.DateTimeFormat('en-US',{timeZone:TZ,hourCycle:'h23',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit'});
+const keyOf=d=>fmtKey.format(d);
+function hm(d){const p=fmtHM.formatToParts(d);const g=t=>(p.find(x=>x.type===t)||{}).value||'';return {t:g('hour')+':'+g('minute'),z:g('timeZoneName')};}
+function offMin(d){const p={};fmtParts.formatToParts(d).forEach(x=>p[x.type]=x.value);const u=Date.UTC(+p.year,+p.month-1,+p.day,+p.hour%24,+p.minute,+p.second);return Math.round((u-d.getTime())/60000);}
+function londonToUTC(y,m,d,h,mi){const g=Date.UTC(y,m-1,d,h,mi);let o=offMin(new Date(g));let t=g-o*60000;const o2=offMin(new Date(t));if(o2!==o)t=g-o2*60000;return new Date(t);}
+function L(s){const [a,b]=s.split(' ');const [y,m,d]=a.split('-').map(Number);const [h,mi]=b.split(':').map(Number);return londonToUTC(y,m,d,h,mi);}
+function addDays(k,n){const [y,m,d]=k.split('-').map(Number);return new Date(Date.UTC(y,m-1,d+n,12)).toISOString().slice(0,10);}
+function wd(k){const [y,m,d]=k.split('-').map(Number);return new Date(Date.UTC(y,m-1,d,12)).getUTCDay();}
+function mondayOf(k){return addDays(k,-((wd(k)+6)%7));}
+const DN=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+const MN=['January','February','March','April','May','June','July','August','September','October','November','December'];
+function niceKey(k,long){const [y,m,d]=k.split('-').map(Number);return (long?DN[wd(k)]+' ':'')+d+' '+MN[m-1].slice(0,long?9:3)+(long?' '+y:'');}
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const store={get(k,f){try{const v=localStorage.getItem('fd:'+k);return v?JSON.parse(v):f}catch(e){return f}},set(k,v){try{localStorage.setItem('fd:'+k,JSON.stringify(v))}catch(e){}}};
+
+/* ---------- SAMPLE DATA (illustrative only) ---------- */
+const S=(o)=>Object.assign({sample:true,watch:{uk:null,in:null},sources:[],disruption:null,conflict:null,result:null,debate:null},o);
+let SAMPLE=[];let STATUS={last_run:null,failed:[]};
+const SOURCES=[
+ ['Cricket','BCCI','https://www.bcci.tv','Official page'],['Cricket','ICC','https://www.icc-cricket.com','Official page'],['Cricket','ECB','https://www.ecb.co.uk','Official page'],
+ ['Football','Premier League','https://www.premierleague.com','Official page'],['Football','UEFA','https://www.uefa.com','Official page'],['Football','Indian Super League','https://www.indiansuperleague.com','Official page'],
+ ['Hockey','FIH','https://www.fih.hockey','Official page'],['Badminton','BWF','https://bwfbadminton.com','Official page'],['Athletics','World Athletics','https://worldathletics.org','Official page'],
+ ['Chess','FIDE','https://www.fide.com','Official page'],['Shooting','ISSF','https://www.issf-sports.org','Official page'],['Wrestling','United World Wrestling','https://uww.org','Official page'],
+ ['Motorsport','Formula 1','https://www.formula1.com','Official page'],['Tennis','ATP Tour','https://www.atptour.com','Official page'],['Tennis','WTA','https://www.wtatennis.com','Official page'],['Rugby union','England Rugby','https://www.englandrugby.com','Official page'],
+];
+
+/* ---------- state ---------- */
+let imported=store.get('imported',[]).map(e=>Object.assign(e,{start:new Date(e.start)}));
+let favs=new Set(store.get('favs',['India','England','Sample Player (IND)']));
+let reqs=store.get('reqs',[]);
+const st={region:store.get('region','india'),sec:'calendar',view:store.get('view','week'),cursor:keyOf(new Date()),open:new Set(),rep:'daily',repCursor:keyOf(new Date())};
+const all=()=>SAMPLE.concat(imported);
+function endOf(e){return new Date(e.start.getTime()+(e.mins||120)*60000);}
+function effStatus(e){if(e.status==='Scheduled'&&Date.now()>endOf(e).getTime())return 'Awaiting Result';return e.status;}
+const stClass={'Scheduled':'st-scheduled','Awaiting Result':'st-awaiting','Result Verified':'st-verified','Summary Published':'st-published','Needs Review':'st-review'};
+const RC={india:'var(--in)',uk:'var(--uk)',global:'var(--gl)'};
+const RN={india:'India',uk:'UK',global:'Global'};
+
+/* ---------- header ---------- */
+function nextClockChange(){const now=new Date();let o=offMin(now);for(let h=1;h<24*400;h++){const d=new Date(now.getTime()+h*3600000);if(offMin(d)!==o){return d;}}return null;}
+function renderClock(){const n=new Date();const x=hm(n);const ch=nextClockChange();
+  document.getElementById('clock').textContent=niceKey(keyOf(n),true)+' · '+x.t+' '+x.z+(ch?' · '+(x.z==='BST'?'GMT':'BST')+' from '+niceKey(keyOf(ch)):'');}
+function renderHealth(){const ev=all();const rev=ev.filter(e=>effStatus(e)==='Needs Review').length;const aw=ev.filter(e=>effStatus(e)==='Awaiting Result').length;
+  document.getElementById('health').innerHTML=`<span>Last automated run: <b>${STATUS.last_run?esc(STATUS.last_run):'none yet'}</b></span><span>Failed sources: <b>${STATUS.last_run?STATUS.failed.length:'none checked'}</b></span><span>Awaiting result: <b>${aw}</b></span><span>Needs review: <b>${rev}</b></span><span>Records: <b>${ev.length}</b> (${imported.length} imported)</span>`;}
+
+/* ---------- filters ---------- */
+function fillSelect(id,label,vals){const el=document.getElementById(id);const cur=el.value;el.innerHTML=`<option value="">${label}</option>`+[...new Set(vals)].sort().map(v=>`<option${v===cur?' selected':''}>${esc(v)}</option>`).join('');}
+function refreshFilters(){const ev=all().filter(e=>e.regions.includes(st.region));fillSelect('fSport','All sports',ev.map(e=>e.sport));fillSelect('fCountry','All host countries',ev.map(e=>e.country));fillSelect('fComp','All competitions',ev.map(e=>e.comp));}
+function filtered(){const q=document.getElementById('q').value.trim().toLowerCase();const sp=fSport.value,co=fCountry.value,cp=fComp.value,fo=fFav.checked;
+  return all().filter(e=>e.regions.includes(st.region)&&(!sp||e.sport===sp)&&(!co||e.country===co)&&(!cp||e.comp===cp)&&(!fo||e.parts.some(p=>favs.has(p)))&&(!q||[e.sport,e.comp,e.round,e.venue,e.country,...e.parts].join(' ').toLowerCase().includes(q))).sort((a,b)=>a.start-b.start);}
+function renderFavRow(){const r=document.getElementById('favRow');r.innerHTML=favs.size?'Following: '+[...favs].map(f=>`<button class="fav" aria-pressed="true" data-fav="${esc(f)}">★ ${esc(f)}</button>`).join(' '):'Star a team or athlete inside any fixture to follow them.';}
+
+/* ---------- cards ---------- */
+function card(e){const x=hm(e.start);const s=effStatus(e);const open=st.open.has(e.id);
+  const title=e.parts.length>1?e.parts.map(esc).join(' <span style="color:var(--muted);font-weight:400">vs</span> '):esc(e.parts[0]);
+  let h=`<article class="card"><button class="sum" aria-expanded="${open}" data-open="${e.id}">
+   <div class="time">${x.t}<small>${x.z}</small></div>
+   <div class="what"><div class="title">${title}</div><div class="meta">${esc(e.comp)} · ${esc(e.round)}</div><div class="meta">${esc(e.venue)}, ${esc(e.country)}</div>
+   <div class="tags"><span class="chip">${esc(e.sport)}</span>${e.sample?'<span class="chip sample">Sample</span>':'<span class="chip">Imported</span>'}${e.disruption?`<span class="chip disr">${esc(e.disruption.split('.')[0])}</span>`:''}${e.conflict?'<span class="chip disr">Time conflict</span>':''}</div></div>
+   <div class="side"><span class="pill ${stClass[s]}">${s}</span><span class="rdots">${e.regions.map(r=>`<i class="dot" style="--rc:${RC[r]}" title="${RN[r]}"></i>`).join('')}</span></div></button>`;
+  if(open){const w=v=>v&&v!=='Not verified yet'?esc(v):'<span class="unv">Not verified yet</span>';
+    h+=`<div class="detail">`;
+    if(e.conflict)h+=`<div class="note">${esc(e.conflict)}</div>`;
+    if(e.disruption)h+=`<div class="note warn">${esc(e.disruption)}</div>`;
+    h+=`<dl class="kv"><div><dt>London start</dt><dd>${niceKey(keyOf(e.start),true)}, ${x.t} ${x.z}</dd></div><div><dt>Official schedule</dt><dd><a href="${esc(e.link)}" target="_blank" rel="noopener">${esc(e.link.replace(/^https?:\/\//,''))}</a></dd></div>
+      <div><dt>Watch in the UK</dt><dd>${w(e.watch.uk)}</dd></div><div><dt>Watch in India</dt><dd>${w(e.watch.in)}</dd></div>
+      <div><dt>Schedule verified</dt><dd>${e.verified?niceKey(e.verified,true):'<span class="unv">Not verified</span>'}</dd></div><div><dt>Appears in</dt><dd>${e.regions.map(r=>RN[r]).join(', ')}</dd></div></dl>`;
+    h+=`<div class="block"><h4>Teams and athletes</h4><div class="parts">${e.parts.map(p=>`<button class="fav" data-fav="${esc(p)}" aria-pressed="${favs.has(p)}">${favs.has(p)?'★':'☆'} ${esc(p)}</button>`).join('')}</div></div>`;
+    if(e.result&&(s==='Result Verified'||s==='Summary Published')){const r=e.result;
+      h+=`<div class="block"><h4>Result</h4><p style="margin:0 0 6px">${esc(r.summary)}</p>`;
+      if(r.perf.length)h+=`<p style="margin:0 0 4px;font-weight:600;font-size:.86rem">Key performances</p><ul>${r.perf.map(p=>`<li>${esc(p)}</li>`).join('')}</ul>`;
+      if(r.records.length)h+=`<p style="margin:6px 0 4px;font-weight:600;font-size:.86rem">Records and milestones</p><ul>${r.records.map(p=>`<li>${esc(p)}</li>`).join('')}</ul>`;
+      if(r.turning)h+=`<p style="margin:6px 0 0;font-size:.88rem"><b>Turning point.</b> ${esc(r.turning)}</p>`;
+      if(r.standings)h+=`<p style="margin:4px 0 0;font-size:.88rem"><b>Standings.</b> ${esc(r.standings)}</p>`;
+      h+=`</div><div class="block"><h4>Key insights</h4><ul>${r.insights.map(p=>`<li>${esc(p)}</li>`).join('')}</ul></div>`;}
+    else if(s==='Awaiting Result')h+=`<div class="block"><h4>Result</h4><p class="unv" style="margin:0">Expected finish has passed. No result is shown until the official results page confirms it.</p></div>`;
+    if(e.debate){const d=e.debate;h+=`<div class="block"><h4>Public debate</h4><p style="margin:0 0 6px;font-size:.9rem"><b>Trigger.</b> ${esc(d.trigger)}</p><ul style="list-style:none;padding:0">${d.views.map(v=>`<li><span class="kind k-${v.kind}">${v.kind}</span>${esc(v.text)}</li>`).join('')}</ul>${d.note?`<p class="unv" style="margin:4px 0 0;font-size:.82rem">${esc(d.note)}</p>`:''}</div>`;}
+    const srcs=(e.sources||[]).concat(e.result?e.result.sources:[]).concat(e.debate?e.debate.sources:[]);
+    h+=`<div class="block"><h4>Sources</h4><ul>${srcs.map(s=>`<li><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a>${s.tier?` <span class="chip">${esc(s.tier)}</span>`:''}</li>`).join('')||'<li class="unv">No source recorded</li>'}</ul></div></div>`;}
+  return h+`</article>`;}
+
+/* ---------- calendar views ---------- */
+function renderCalendar(){const ev=filtered();const out=document.getElementById('calendar');const tk=keyOf(new Date());
+  const byDay={};ev.forEach(e=>{(byDay[keyOf(e.start)]=byDay[keyOf(e.start)]||[]).push(e)});
+  const lab=document.getElementById('rangeLabel');
+  document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.view===st.view));
+  const empty='<div class="empty">No tracked fixtures for this day.</div>';
+  if(st.view==='day'){lab.textContent=niceKey(st.cursor,true);const l=byDay[st.cursor]||[];out.innerHTML=`<div class="daygroup">${l.map(card).join('')||empty}</div>`;return;}
+  if(st.view==='week'){const m=mondayOf(st.cursor);lab.textContent=niceKey(m)+' – '+niceKey(addDays(m,6))+' '+addDays(m,6).slice(0,4);let h='';
+    for(let i=0;i<7;i++){const k=addDays(m,i);const l=byDay[k]||[];h+=`<div class="daygroup"><div class="dayhead${k===tk?' today':''}">${DN[wd(k)]} ${niceKey(k)}${k===tk?' <small>today</small>':''}<small>${l.length?l.length+' fixture'+(l.length>1?'s':''):''}</small></div>${l.map(card).join('')||empty}</div>`;}
+    out.innerHTML=h;return;}
+  const [y,mo]=st.cursor.split('-').map(Number);lab.textContent=MN[mo-1]+' '+y;const first=`${y}-${String(mo).padStart(2,'0')}-01`;let k=mondayOf(first);
+  let h='<div class="mgrid-wrap"><div class="mgrid">'+['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map(d=>`<div class="wd">${d}</div>`).join('');
+  for(let i=0;i<42;i++){const l=byDay[k]||[];const inM=+k.slice(5,7)===mo;
+    h+=`<button class="mcell${inM?'':' out'}${k===tk?' today':''}" data-day="${k}" aria-label="${niceKey(k,true)}, ${l.length} fixtures"><span class="n">${+k.slice(8)}</span>${l.slice(0,3).map(e=>`<span class="ev" style="--rc:${RC[e.regions[0]]}">${hm(e.start).t} ${esc(e.parts.length>1?e.parts[0]+' v '+e.parts[1]:e.comp)}</span>`).join('')}${l.length>3?`<span class="more ev" style="border:0">+${l.length-3} more</span>`:''}${l.length?`<span class="cnt">${l.length}</span>`:''}</button>`;
+    k=addDays(k,1);if(i>=34&&+k.slice(5,7)!==mo&&wd(k)===1)break;}
+  out.innerHTML=h+'</div></div><p class="empty" style="margin-top:8px">Tap a day to open it.</p>';}
+
+/* ---------- reports ---------- */
+function period(){const c=st.repCursor;if(st.rep==='daily')return {a:c,b:c,label:niceKey(c,true)};
+  if(st.rep==='weekly'){const m=mondayOf(c);return {a:m,b:addDays(m,6),label:'Week of '+niceKey(m,true)};}
+  const [y,mo]=c.split('-').map(Number);const a=`${y}-${String(mo).padStart(2,'0')}-01`;const b=addDays(`${mo===12?y+1:y}-${String(mo===12?1:mo+1).padStart(2,'0')}-01`,-1);return {a,b,label:MN[mo-1]+' '+y};}
+function nextPeriod(p){if(st.rep==='daily')return {a:addDays(p.a,1),b:addDays(p.a,1),label:'Tomorrow'};if(st.rep==='weekly')return {a:addDays(p.a,7),b:addDays(p.a,13),label:'Next week'};const n=addDays(p.b,1);const [y,mo]=n.split('-').map(Number);return {a:n,b:addDays(`${mo===12?y+1:y}-${String(mo===12?1:mo+1).padStart(2,'0')}-01`,-1),label:'Next month'};}
+function line(e){const x=hm(e.start);return `<li>${st.rep==='daily'?'':niceKey(keyOf(e.start))+', '}${x.t} ${x.z} · <b>${esc(e.parts.join(' vs '))}</b> · ${esc(e.comp)}, ${esc(e.round)} <span class="src">[${e.regions.map(r=>RN[r]).join(', ')}${e.sample?', sample':''}]</span></li>`;}
+function renderReport(){document.querySelectorAll('[data-rep]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.rep===st.rep));
+  const p=period();const inP=(e,q)=>{const k=keyOf(e.start);return k>=q.a&&k<=q.b};const ev=all().sort((a,b)=>a.start-b.start);const now=keyOf(new Date());
+  const inside=ev.filter(e=>inP(e,p));const done=inside.filter(e=>['Result Verified','Summary Published'].includes(effStatus(e)));const awaiting=inside.filter(e=>effStatus(e)==='Awaiting Result');const review=inside.filter(e=>effStatus(e)==='Needs Review');
+  const upcoming=st.rep==='daily'?inside:ev.filter(e=>inP(e,nextPeriod(p)));const deb=inside.filter(e=>e.debate);
+  const ul=(l,f,none)=>l.length?`<ul>${l.map(f).join('')}</ul>`:`<p class="unv" style="margin:0">${none}</p>`;
+  const srcLinks=l=>{const s=[];l.forEach(e=>(e.result?e.result.sources:e.sources).forEach(x=>s.push(`<a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.name)}</a>`)));return s.length?`<p class="src">Sources: ${[...new Set(s)].join(' · ')}</p>`:'';};
+  let h=`<div><span class="chip sample">Built from sample data</span> <b style="font-family:var(--f-display);font-size:1.25rem;letter-spacing:.03em;margin-left:6px">${p.label}</b> <span class="src">London local · ${niceKey(p.a)} – ${niceKey(p.b)}</span></div>`;
+  h+=`<section><h3>${st.rep==='daily'?'Fixtures today':st.rep==='weekly'?'Fixtures this week':'Fixtures this month'}</h3>${ul(inside,line,'No tracked fixtures in this period.')}</section>`;
+  h+=`<section><h3>${st.rep==='monthly'?'Champions and major outcomes':'Verified results'}</h3>${ul(done,e=>`<li><b>${esc(e.result.summary)}</b> <span class="src">${esc(e.comp)}</span>${e.result.perf.length?'<br><span class="src">Key performance: '+esc(e.result.perf[0])+'</span>':''}${e.result.records.length?'<br><span class="src">Milestone: '+esc(e.result.records[0])+'</span>':''}</li>`,'No verified results in this period.')}${srcLinks(done)}</section>`;
+  if(st.rep!=='daily'){const ind=done.filter(e=>e.regions.includes('india')),gb=done.filter(e=>e.regions.includes('uk'));
+    h+=`<section><h3>Indian performances</h3>${ul(ind,e=>`<li>${esc(e.result.summary)}</li>`,'No verified Indian results in this period.')}<h3>British performances</h3>${ul(gb,e=>`<li>${esc(e.result.summary)}</li>`,'No verified British results in this period.')}</section>`;}
+  if(st.rep==='monthly')h+=`<section><h3>Standings and rankings</h3><p class="unv" style="margin:0">Only shown once copied from an official standings or rankings page. None recorded yet.</p></section>`;
+  h+=`<section><h3>${st.rep==='daily'?'Developing debates':'Controversies and debates'}</h3>${ul(deb,e=>`<li><b>${esc(e.parts.join(' vs '))}</b>: ${esc(e.debate.trigger)} <span class="src">${e.debate.views.length} viewpoints summarised</span></li>`,'No debates summarised in this period.')}</section>`;
+  if(awaiting.length||review.length)h+=`<section><h3>Not yet verified</h3>${ul(awaiting.concat(review),e=>`<li>${esc(e.parts.join(' vs '))} (${esc(e.comp)}) · <span class="pill ${stClass[effStatus(e)]}">${effStatus(e)}</span></li>`,'')}</section>`;
+  if(st.rep!=='daily')h+=`<section><h3>${st.rep==='weekly'?"Next week's calendar":"Next month's key events"}</h3>${ul(upcoming,line,'No tracked fixtures yet for the next period.')}</section>`;
+  document.getElementById('report').innerHTML=h;}
+function stepRep(n){const c=st.repCursor;if(st.rep==='daily')st.repCursor=addDays(c,n);else if(st.rep==='weekly')st.repCursor=addDays(c,7*n);else{const [y,m]=c.split('-').map(Number);const t=new Date(Date.UTC(y,m-1+n,1,12));st.repCursor=t.toISOString().slice(0,10);}renderReport();}
+
+/* ---------- sources ---------- */
+function renderSources(){document.getElementById('srcTable').innerHTML='<thead><tr><th>Sport</th><th>Source</th><th>Type</th><th>Access</th><th>Last checked</th></tr></thead><tbody>'+SOURCES.map(s=>`<tr><td>${s[0]}</td><td><a href="${s[2]}" target="_blank" rel="noopener">${s[1]}</a></td><td>${s[3]}</td><td class="unv">To check: feed, terms, robots.txt</td><td class="unv">Never</td></tr>`).join('')+'</tbody>';}
+
+/* ---------- import ---------- */
+function parseCSV(t){const rows=[];let r=[],f='',q=false;for(let i=0;i<t.length;i++){const c=t[i];if(q){if(c==='"'&&t[i+1]==='"'){f+='"';i++}else if(c==='"')q=false;else f+=c}else if(c==='"')q=true;else if(c===','){r.push(f);f=''}else if(c==='\n'||c==='\r'){if(c==='\r'&&t[i+1]==='\n')i++;r.push(f);rows.push(r);r=[];f=''}else f+=c}if(f||r.length){r.push(f);rows.push(r)}return rows.filter(x=>x.some(v=>v.trim()));}
+function parseICS(t){const un=t.replace(/\r?\n[ \t]/g,'');const out=[];un.split('BEGIN:VEVENT').slice(1).forEach(b=>{const g=k=>{const m=b.match(new RegExp('^'+k+'([;:][^\\n\\r]*)','m'));return m?m[1]:null};const ds=g('DTSTART');if(!ds)return;const val=ds.split(':').pop().trim();const m=val.match(/^(\d{4})(\d{2})(\d{2})(?:T(\d{2})(\d{2}))?/);if(!m)return;let d;
+  if(/Z$/.test(val))d=new Date(Date.UTC(+m[1],m[2]-1,+m[3],+(m[4]||0),+(m[5]||0)));else d=londonToUTC(+m[1],+m[2],+m[3],+(m[4]||0),+(m[5]||0));
+  const sum=(g('SUMMARY')||':Untitled').replace(/^[^:]*:/,'').replace(/\\,/g,',');const parts=sum.split(/\s+(?:vs?\.?|v)\s+/i);
+  out.push({sport:'Unassigned',comp:'Calendar import',round:'',parts:parts.length>1?parts:[sum],start:d,venue:(g('LOCATION')||':').replace(/^[^:]*:/,'').replace(/\\,/g,',')||'Venue not stated',country:'Not stated',regions:['global'],link:(g('URL')||':').replace(/^[^:]*:/,'')||''});});return out;}
+const norm=s=>String(s).toLowerCase().replace(/\(sample\)/g,'').replace(/[^a-z0-9]/g,'');
+const dkey=e=>[norm(e.sport),norm(e.comp),[...e.parts].map(norm).sort().join('+'),keyOf(e.start)].join('|');
+function doImport(text){const msg=document.getElementById('impMsg');let recs=[];try{
+  if(/BEGIN:VCALENDAR/.test(text))recs=parseICS(text);else{const rows=parseCSV(text.trim());const hd=rows.shift().map(h=>h.trim().toLowerCase());const ix=n=>hd.indexOf(n);
+    rows.forEach(r=>{const g=n=>(r[ix(n)]||'').trim();const [y,m,d]=g('date').split('-').map(Number);const [hh,mm]=(g('time_london')||'00:00').split(':').map(Number);if(!y||!m||!d||isNaN(hh))return;
+      recs.push({sport:g('sport')||'Unassigned',comp:g('competition')||'Unnamed competition',round:g('round'),parts:g('participants').split(';').map(s=>s.trim()).filter(Boolean),start:londonToUTC(y,m,d,hh,mm||0),venue:g('venue')||'Venue not stated',country:g('country')||'Not stated',regions:(g('regions')||'global').split(';').map(s=>s.trim().toLowerCase()).filter(x=>RN[x]),link:g('official_link')});});}
+  }catch(err){msg.innerHTML='<div class="msg err">Could not read that input. Check the header row matches the column list above.</div>';return;}
+  if(!recs.length){msg.innerHTML='<div class="msg err">No rows with a valid date were found.</div>';return;}
+  const existing=new Map(all().map(e=>[dkey(e),e]));let added=0,dup=0,conf=0;
+  recs.forEach((r,i)=>{if(!r.parts.length)r.parts=['Participants not stated'];if(!r.regions.length)r.regions=['global'];const k=dkey(r);const ex=existing.get(k);
+    if(ex){if(Math.abs(ex.start-r.start)<60000){dup++;return;}conf++;const a=hm(ex.start).t,b=hm(r.start).t;ex.conflict=`Sources disagree on start time: existing record ${a}, import ${b} (London). Check the official link.`;ex.status='Needs Review';if(!ex.sample)store.set('imported',imported);return;}
+    const e=Object.assign({id:'i'+Date.now()+i,sample:false,mins:120,verified:null,status:'Needs Review',watch:{uk:null,in:null},disruption:null,conflict:null,result:null,debate:null,sources:r.link?[{name:'Link supplied at import',url:r.link,tier:'Unverified'}]:[]},r);if(!e.link)e.link='';
+    imported.push(e);existing.set(k,e);added++;});
+  store.set('imported',imported);msg.innerHTML=`<div class="msg">Added ${added}. Skipped ${dup} duplicate${dup===1?'':'s'}. Flagged ${conf} time conflict${conf===1?'':'s'} for review. New records are marked Needs Review until checked against the official schedule.</div>`;refreshAll();}
+
+/* ---------- improvement requests ---------- */
+function renderReqs(){const l=document.getElementById('reqList');l.innerHTML=reqs.length?reqs.slice().reverse().map(r=>`<div class="req"><div class="h"><span>${esc(r.type)} · ${esc(r.date)}</span><span class="pill ${r.status==='Approved'?'st-verified':r.status==='Declined'?'st-review':r.status==='Done'?'st-published':'st-awaiting'}">${r.status}</span></div><div>${esc(r.text)}</div><div class="row">${r.status==='Pending review'?`<button class="btn small" data-req="${r.id}" data-to="Approved">Approve</button><button class="btn small" data-req="${r.id}" data-to="Declined">Decline</button>`:''}${r.status==='Approved'?`<button class="btn small" data-req="${r.id}" data-to="Done">Mark built</button>`:''}</div></div>`).join(''):'<p class="empty">No requests yet. Your first one will appear here with its date and status.</p>';}
+
+/* ---------- wiring ---------- */
+function show(){document.querySelectorAll('[data-sec]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.sec===st.sec));['calendar','reports','sources','improve'].forEach(s=>document.getElementById('sec-'+s).hidden=s!==st.sec);
+  document.querySelectorAll('[data-region]').forEach(b=>b.setAttribute('aria-selected',b.dataset.region===st.region));document.querySelector('.regions').hidden=!(st.sec==='calendar');}
+function refreshAll(){renderHealth();refreshFilters();renderFavRow();renderCalendar();renderReport();show();}
+document.addEventListener('click',ev=>{const t=ev.target.closest('button,[data-day]');if(!t)return;const d=t.dataset;
+  if(d.region){st.region=d.region;store.set('region',st.region);fSport.value=fCountry.value=fComp.value='';refreshAll();}
+  else if(d.sec){st.sec=d.sec;show();if(d.sec==='reports')renderReport();}
+  else if(d.view){st.view=d.view;store.set('view',st.view);renderCalendar();}
+  else if(d.open){st.open.has(d.open)?st.open.delete(d.open):st.open.add(d.open);renderCalendar();}
+  else if(d.fav){favs.has(d.fav)?favs.delete(d.fav):favs.add(d.fav);store.set('favs',[...favs]);renderFavRow();renderCalendar();}
+  else if(d.day){st.cursor=d.day;st.view='day';renderCalendar();}
+  else if(d.rep){st.rep=d.rep;renderReport();}
+  else if(d.req){const r=reqs.find(x=>x.id===d.req);if(r){r.status=d.to;r.updated=keyOf(new Date());store.set('reqs',reqs);renderReqs();}}});
+const step=n=>{if(st.view==='day')st.cursor=addDays(st.cursor,n);else if(st.view==='week')st.cursor=addDays(st.cursor,7*n);else{const [y,m]=st.cursor.split('-').map(Number);st.cursor=new Date(Date.UTC(y,m-1+n,1,12)).toISOString().slice(0,10);}renderCalendar();};
+prev.onclick=()=>step(-1);next.onclick=()=>step(1);today.onclick=()=>{st.cursor=keyOf(new Date());renderCalendar();};
+['q','fSport','fCountry','fComp','fFav'].forEach(id=>document.getElementById(id).addEventListener('input',renderCalendar));
+repPrev.onclick=()=>stepRep(-1);repNext.onclick=()=>stepRep(1);repNow.onclick=()=>{st.repCursor=keyOf(new Date());renderReport();};
+function copyText(txt,btn){const done=()=>{const o=btn.textContent;btn.textContent='Copied';setTimeout(()=>btn.textContent=o,1400)};try{navigator.clipboard.writeText(txt).then(done,()=>fallback(txt))}catch(e){fallback(txt)}}
+function fallback(txt){const ta=document.getElementById('impText');if(st.sec!=='sources'){alertBox('Copy is blocked here. Select the text manually.');return;}ta.value=txt;ta.select();}
+function alertBox(m){const r=document.getElementById('report');r.insertAdjacentHTML('afterbegin',`<div class="msg err">${esc(m)}</div>`);}
+repCopy.onclick=()=>copyText(document.getElementById('report').innerText,repCopy);
+recheck.onclick=()=>{refreshAll();const x=hm(new Date());recheckMsg.textContent='Checked at '+x.t+' '+x.z+'. This recomputes statuses only; fetching sources starts in stage 2.';};
+impRun.onclick=()=>doImport(document.getElementById('impText').value);
+impFile.onchange=e=>{const f=e.target.files[0];if(!f)return;const rd=new FileReader();rd.onload=()=>{impText.value=rd.result;doImport(rd.result)};rd.readAsText(f);e.target.value='';};
+impClear.onclick=()=>{imported=[];store.set('imported',[]);document.getElementById('impMsg').innerHTML='<div class="msg">Imported records removed. Sample data is unchanged.</div>';refreshAll();};
+reqAdd.onclick=()=>{const t=reqText.value.trim();if(!t){reqText.focus();return;}reqs.push({id:'r'+Date.now(),date:keyOf(new Date()),type:reqType.value,text:t,status:'Pending review'});store.set('reqs',reqs);reqText.value='';renderReqs();};
+reqCopy.onclick=()=>{try{navigator.clipboard.writeText(JSON.stringify(reqs,null,2)).then(()=>{reqCopy.textContent='Copied';setTimeout(()=>reqCopy.textContent='Copy all as JSON',1400)},()=>{reqText.value=JSON.stringify(reqs,null,2);reqText.select();})}catch(e){reqText.value=JSON.stringify(reqs,null,2);reqText.select();}};
+renderClock();setInterval(renderClock,30000);renderSources();renderReqs();
+async function load(){try{const r=await fetch('data/events.json',{cache:'no-cache'});const d=await r.json();SAMPLE=d.events.map(e=>Object.assign(e,{start:L(e.start_london)}));}catch(e){document.getElementById('calendar').innerHTML='<div class="msg err">Could not load the fixture data. Check your connection and reload.</div>';}
+ try{const r=await fetch('data/status.json',{cache:'no-cache'});if(r.ok)STATUS=await r.json();}catch(e){}
+ refreshAll();}
+load();
+if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(()=>{});}
+})();
+</script>
+
+</body>
+</html>
