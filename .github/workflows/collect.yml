@@ -1,0 +1,45 @@
+name: Collect data
+
+on:
+  schedule:
+    # Times are UTC. 06:07 / 17:07 / 22:37 UTC = about 7am, 6pm and 11pm in London during BST, an hour earlier in GMT.
+    - cron: "7 6 * * *"
+    - cron: "7 17 * * *"
+    - cron: "37 22 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["collector/**", ".github/workflows/collect.yml"]
+
+permissions:
+  contents: write
+  models: read
+
+concurrency:
+  group: collect
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Collect fixtures, results and news
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          FOOTBALL_DATA_KEY: ${{ secrets.FOOTBALL_DATA_KEY }}
+          CRICKETDATA_KEY: ${{ secrets.CRICKETDATA_KEY }}
+        run: python collector/collect.py
+      - name: Save updated data
+        run: |
+          git config user.name "fixture-desk-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add site/data
+          if git diff --cached --quiet; then echo "No changes"; exit 0; fi
+          git commit -m "Update data $(date -u +%Y-%m-%dT%H:%MZ)"
+          git pull --rebase origin main
+          git push

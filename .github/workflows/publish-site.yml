@@ -5,6 +5,9 @@ on:
     branches: [main]
     paths: ["site/**", ".github/workflows/publish-site.yml"]
   workflow_dispatch:
+  workflow_run:
+    workflows: ["Collect data"]
+    types: [completed]
 
 permissions:
   contents: read

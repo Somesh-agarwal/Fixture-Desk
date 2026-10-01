@@ -178,7 +178,7 @@ code{font-family:var(--f-mono);font-size:.82em;background:var(--sunk);padding:0 
     <h1>Fixture <span>Desk</span></h1>
     <div class="clock" id="clock"></div>
   </div>
-  <div class="banner" role="note"><div><b>Sample data.</b> Every fixture, result and debate on this page is illustrative and marked <span class="chip sample">Sample</span>. Nothing here is a verified schedule. Real fixtures arrive once source collection is switched on in stage 2.</div></div>
+  <div class="banner" role="note" id="sampleBanner"><div><b>Sample data.</b> Every fixture, result and debate on this page is illustrative and marked <span class="chip sample">Sample</span>. Nothing here is a verified schedule. Real fixtures arrive once source collection is switched on in stage 2.</div></div>
   <div class="health" id="health"></div>
   <div class="regions" role="tablist" aria-label="Region">
     <button role="tab" data-region="india" style="--rc:var(--in)"><i class="dot"></i>India</button>
@@ -246,7 +246,7 @@ code{font-family:var(--f-mono);font-size:.82em;background:var(--sunk);padding:0 
 <section id="sec-sources" hidden>
   <div class="panel">
     <h2>Sources</h2>
-    <p class="lead">Candidate free sources, official first. None has been fetched yet. In stage 2 each one is checked for a public calendar or RSS feed and for its terms and robots.txt before any scheduled fetch is added. Sources that block automated access stay on manual import.</p>
+    <p class="lead">What happened on the most recent automatic update. Updates run about 7am, 6pm and 11pm London time. A failed source keeps its previous data and is tried again on the next update.</p>
     <div class="tablewrap"><table id="srcTable"></table></div>
     <h3>Status workflow</h3>
     <div class="flow">
@@ -316,7 +316,8 @@ const store={get(k,f){try{const v=localStorage.getItem('fd:'+k);return v?JSON.pa
 
 /* ---------- SAMPLE DATA (illustrative only) ---------- */
 const S=(o)=>Object.assign({sample:true,watch:{uk:null,in:null},sources:[],disruption:null,conflict:null,result:null,debate:null},o);
-let SAMPLE=[];let STATUS={last_run:null,failed:[]};
+let SAMPLE=[];let STATUS={last_run:null,failed:[]};let NEWS=[];let DEBATES=[];
+const tl=e=>{const x=hm(e.start);return e.time_tbc?'Time TBC':x.t+' '+x.z;};
 const SOURCES=[
  ['Cricket','BCCI','https://www.bcci.tv','Official page'],['Cricket','ICC','https://www.icc-cricket.com','Official page'],['Cricket','ECB','https://www.ecb.co.uk','Official page'],
  ['Football','Premier League','https://www.premierleague.com','Official page'],['Football','UEFA','https://www.uefa.com','Official page'],['Football','Indian Super League','https://www.indiansuperleague.com','Official page'],
@@ -355,15 +356,16 @@ function renderFavRow(){const r=document.getElementById('favRow');r.innerHTML=fa
 function card(e){const x=hm(e.start);const s=effStatus(e);const open=st.open.has(e.id);
   const title=e.parts.length>1?e.parts.map(esc).join(' <span style="color:var(--muted);font-weight:400">vs</span> '):esc(e.parts[0]);
   let h=`<article class="card"><button class="sum" aria-expanded="${open}" data-open="${e.id}">
-   <div class="time">${x.t}<small>${x.z}</small></div>
+   <div class="time">${e.time_tbc?'TBC':x.t}<small>${e.time_tbc?'time':x.z}</small></div>
    <div class="what"><div class="title">${title}</div><div class="meta">${esc(e.comp)} · ${esc(e.round)}</div><div class="meta">${esc(e.venue)}, ${esc(e.country)}</div>
-   <div class="tags"><span class="chip">${esc(e.sport)}</span>${e.sample?'<span class="chip sample">Sample</span>':'<span class="chip">Imported</span>'}${e.disruption?`<span class="chip disr">${esc(e.disruption.split('.')[0])}</span>`:''}${e.conflict?'<span class="chip disr">Time conflict</span>':''}</div></div>
+   <div class="tags"><span class="chip">${esc(e.sport)}</span>${e.sample?'<span class="chip sample">Sample</span>':e.source_id?`<span class="chip">${esc((e.sources[0]||{}).tier||'Collected')}</span>`:'<span class="chip">Imported</span>'}${e.disruption?`<span class="chip disr">${esc(e.disruption.split('.')[0])}</span>`:''}${e.conflict?'<span class="chip disr">Time conflict</span>':''}</div></div>
    <div class="side"><span class="pill ${stClass[s]}">${s}</span><span class="rdots">${e.regions.map(r=>`<i class="dot" style="--rc:${RC[r]}" title="${RN[r]}"></i>`).join('')}</span></div></button>`;
   if(open){const w=v=>v&&v!=='Not verified yet'?esc(v):'<span class="unv">Not verified yet</span>';
     h+=`<div class="detail">`;
     if(e.conflict)h+=`<div class="note">${esc(e.conflict)}</div>`;
     if(e.disruption)h+=`<div class="note warn">${esc(e.disruption)}</div>`;
-    h+=`<dl class="kv"><div><dt>London start</dt><dd>${niceKey(keyOf(e.start),true)}, ${x.t} ${x.z}</dd></div><div><dt>Official schedule</dt><dd><a href="${esc(e.link)}" target="_blank" rel="noopener">${esc(e.link.replace(/^https?:\/\//,''))}</a></dd></div>
+    (e.notes||[]).forEach(n=>{h+=`<div class="note warn">${esc(n)}</div>`;});
+    h+=`<dl class="kv"><div><dt>London start</dt><dd>${niceKey(keyOf(e.start),true)}${e.time_tbc?', time to be confirmed':', '+x.t+' '+x.z}</dd></div><div><dt>Official schedule</dt><dd>${e.link?`<a href="${esc(e.link)}" target="_blank" rel="noopener">${esc(e.link.replace(/^https?:\/\//,''))}</a>`:'<span class="unv">Not available</span>'}</dd></div>
       <div><dt>Watch in the UK</dt><dd>${w(e.watch.uk)}</dd></div><div><dt>Watch in India</dt><dd>${w(e.watch.in)}</dd></div>
       <div><dt>Schedule verified</dt><dd>${e.verified?niceKey(e.verified,true):'<span class="unv">Not verified</span>'}</dd></div><div><dt>Appears in</dt><dd>${e.regions.map(r=>RN[r]).join(', ')}</dd></div></dl>`;
     h+=`<div class="block"><h4>Teams and athletes</h4><div class="parts">${e.parts.map(p=>`<button class="fav" data-fav="${esc(p)}" aria-pressed="${favs.has(p)}">${favs.has(p)?'★':'☆'} ${esc(p)}</button>`).join('')}</div></div>`;
@@ -373,7 +375,7 @@ function card(e){const x=hm(e.start);const s=effStatus(e);const open=st.open.has
       if(r.records.length)h+=`<p style="margin:6px 0 4px;font-weight:600;font-size:.86rem">Records and milestones</p><ul>${r.records.map(p=>`<li>${esc(p)}</li>`).join('')}</ul>`;
       if(r.turning)h+=`<p style="margin:6px 0 0;font-size:.88rem"><b>Turning point.</b> ${esc(r.turning)}</p>`;
       if(r.standings)h+=`<p style="margin:4px 0 0;font-size:.88rem"><b>Standings.</b> ${esc(r.standings)}</p>`;
-      h+=`</div><div class="block"><h4>Key insights</h4><ul>${r.insights.map(p=>`<li>${esc(p)}</li>`).join('')}</ul></div>`;}
+      h+=`</div><div class="block"><h4>Key insights</h4>${r.insights&&r.insights.length?`<ul>${r.insights.map(p=>`<li>${esc(p)}</li>`).join('')}</ul>`:'<p class="unv" style="margin:0">Insights are added on the next update after a verified result.</p>'}${r.ai_note?`<p class="unv" style="margin:6px 0 0;font-size:.82rem">${esc(r.ai_note)}</p>`:''}</div>`;}
     else if(s==='Awaiting Result')h+=`<div class="block"><h4>Result</h4><p class="unv" style="margin:0">Expected finish has passed. No result is shown until the official results page confirms it.</p></div>`;
     if(e.debate){const d=e.debate;h+=`<div class="block"><h4>Public debate</h4><p style="margin:0 0 6px;font-size:.9rem"><b>Trigger.</b> ${esc(d.trigger)}</p><ul style="list-style:none;padding:0">${d.views.map(v=>`<li><span class="kind k-${v.kind}">${v.kind}</span>${esc(v.text)}</li>`).join('')}</ul>${d.note?`<p class="unv" style="margin:4px 0 0;font-size:.82rem">${esc(d.note)}</p>`:''}</div>`;}
     const srcs=(e.sources||[]).concat(e.result?e.result.sources:[]).concat(e.debate?e.debate.sources:[]);
@@ -393,7 +395,7 @@ function renderCalendar(){const ev=filtered();const out=document.getElementById(
   const [y,mo]=st.cursor.split('-').map(Number);lab.textContent=MN[mo-1]+' '+y;const first=`${y}-${String(mo).padStart(2,'0')}-01`;let k=mondayOf(first);
   let h='<div class="mgrid-wrap"><div class="mgrid">'+['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map(d=>`<div class="wd">${d}</div>`).join('');
   for(let i=0;i<42;i++){const l=byDay[k]||[];const inM=+k.slice(5,7)===mo;
-    h+=`<button class="mcell${inM?'':' out'}${k===tk?' today':''}" data-day="${k}" aria-label="${niceKey(k,true)}, ${l.length} fixtures"><span class="n">${+k.slice(8)}</span>${l.slice(0,3).map(e=>`<span class="ev" style="--rc:${RC[e.regions[0]]}">${hm(e.start).t} ${esc(e.parts.length>1?e.parts[0]+' v '+e.parts[1]:e.comp)}</span>`).join('')}${l.length>3?`<span class="more ev" style="border:0">+${l.length-3} more</span>`:''}${l.length?`<span class="cnt">${l.length}</span>`:''}</button>`;
+    h+=`<button class="mcell${inM?'':' out'}${k===tk?' today':''}" data-day="${k}" aria-label="${niceKey(k,true)}, ${l.length} fixtures"><span class="n">${+k.slice(8)}</span>${l.slice(0,3).map(e=>`<span class="ev" style="--rc:${RC[e.regions[0]]}">${e.time_tbc?'':hm(e.start).t} ${esc(e.parts.length>1?e.parts[0]+' v '+e.parts[1]:e.comp)}</span>`).join('')}${l.length>3?`<span class="more ev" style="border:0">+${l.length-3} more</span>`:''}${l.length?`<span class="cnt">${l.length}</span>`:''}</button>`;
     k=addDays(k,1);if(i>=34&&+k.slice(5,7)!==mo&&wd(k)===1)break;}
   out.innerHTML=h+'</div></div><p class="empty" style="margin-top:8px">Tap a day to open it.</p>';}
 
@@ -402,27 +404,30 @@ function period(){const c=st.repCursor;if(st.rep==='daily')return {a:c,b:c,label
   if(st.rep==='weekly'){const m=mondayOf(c);return {a:m,b:addDays(m,6),label:'Week of '+niceKey(m,true)};}
   const [y,mo]=c.split('-').map(Number);const a=`${y}-${String(mo).padStart(2,'0')}-01`;const b=addDays(`${mo===12?y+1:y}-${String(mo===12?1:mo+1).padStart(2,'0')}-01`,-1);return {a,b,label:MN[mo-1]+' '+y};}
 function nextPeriod(p){if(st.rep==='daily')return {a:addDays(p.a,1),b:addDays(p.a,1),label:'Tomorrow'};if(st.rep==='weekly')return {a:addDays(p.a,7),b:addDays(p.a,13),label:'Next week'};const n=addDays(p.b,1);const [y,mo]=n.split('-').map(Number);return {a:n,b:addDays(`${mo===12?y+1:y}-${String(mo===12?1:mo+1).padStart(2,'0')}-01`,-1),label:'Next month'};}
-function line(e){const x=hm(e.start);return `<li>${st.rep==='daily'?'':niceKey(keyOf(e.start))+', '}${x.t} ${x.z} · <b>${esc(e.parts.join(' vs '))}</b> · ${esc(e.comp)}, ${esc(e.round)} <span class="src">[${e.regions.map(r=>RN[r]).join(', ')}${e.sample?', sample':''}]</span></li>`;}
+function line(e){return `<li>${st.rep==='daily'?'':niceKey(keyOf(e.start))+', '}${tl(e)} · <b>${esc(e.parts.join(' vs '))}</b> · ${esc(e.comp)}, ${esc(e.round)} <span class="src">[${e.regions.map(r=>RN[r]).join(', ')}${e.sample?', sample':''}]</span></li>`;}
 function renderReport(){document.querySelectorAll('[data-rep]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.rep===st.rep));
   const p=period();const inP=(e,q)=>{const k=keyOf(e.start);return k>=q.a&&k<=q.b};const ev=all().sort((a,b)=>a.start-b.start);const now=keyOf(new Date());
   const inside=ev.filter(e=>inP(e,p));const done=inside.filter(e=>['Result Verified','Summary Published'].includes(effStatus(e)));const awaiting=inside.filter(e=>effStatus(e)==='Awaiting Result');const review=inside.filter(e=>effStatus(e)==='Needs Review');
   const upcoming=st.rep==='daily'?inside:ev.filter(e=>inP(e,nextPeriod(p)));const deb=inside.filter(e=>e.debate);
   const ul=(l,f,none)=>l.length?`<ul>${l.map(f).join('')}</ul>`:`<p class="unv" style="margin:0">${none}</p>`;
   const srcLinks=l=>{const s=[];l.forEach(e=>(e.result?e.result.sources:e.sources).forEach(x=>s.push(`<a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.name)}</a>`)));return s.length?`<p class="src">Sources: ${[...new Set(s)].join(' · ')}</p>`:'';};
-  let h=`<div><span class="chip sample">Built from sample data</span> <b style="font-family:var(--f-display);font-size:1.25rem;letter-spacing:.03em;margin-left:6px">${p.label}</b> <span class="src">London local · ${niceKey(p.a)} – ${niceKey(p.b)}</span></div>`;
+  let h=`<div>${ev.some(e=>e.sample)?'<span class="chip sample">Built from sample data</span>':'<span class="chip">Collected data</span>'} <b style="font-family:var(--f-display);font-size:1.25rem;letter-spacing:.03em;margin-left:6px">${p.label}</b> <span class="src">London local · ${niceKey(p.a)} – ${niceKey(p.b)}</span></div>`;
   h+=`<section><h3>${st.rep==='daily'?'Fixtures today':st.rep==='weekly'?'Fixtures this week':'Fixtures this month'}</h3>${ul(inside,line,'No tracked fixtures in this period.')}</section>`;
   h+=`<section><h3>${st.rep==='monthly'?'Champions and major outcomes':'Verified results'}</h3>${ul(done,e=>`<li><b>${esc(e.result.summary)}</b> <span class="src">${esc(e.comp)}</span>${e.result.perf.length?'<br><span class="src">Key performance: '+esc(e.result.perf[0])+'</span>':''}${e.result.records.length?'<br><span class="src">Milestone: '+esc(e.result.records[0])+'</span>':''}</li>`,'No verified results in this period.')}${srcLinks(done)}</section>`;
   if(st.rep!=='daily'){const ind=done.filter(e=>e.regions.includes('india')),gb=done.filter(e=>e.regions.includes('uk'));
     h+=`<section><h3>Indian performances</h3>${ul(ind,e=>`<li>${esc(e.result.summary)}</li>`,'No verified Indian results in this period.')}<h3>British performances</h3>${ul(gb,e=>`<li>${esc(e.result.summary)}</li>`,'No verified British results in this period.')}</section>`;}
   if(st.rep==='monthly')h+=`<section><h3>Standings and rankings</h3><p class="unv" style="margin:0">Only shown once copied from an official standings or rankings page. None recorded yet.</p></section>`;
-  h+=`<section><h3>${st.rep==='daily'?'Developing debates':'Controversies and debates'}</h3>${ul(deb,e=>`<li><b>${esc(e.parts.join(' vs '))}</b>: ${esc(e.debate.trigger)} <span class="src">${e.debate.views.length} viewpoints summarised</span></li>`,'No debates summarised in this period.')}</section>`;
+  const nk=i=>keyOf(new Date(i.published_utc));const stories=NEWS.filter(i=>{const k=nk(i);return k>=p.a&&k<=p.b}).slice(0,st.rep==='daily'?10:st.rep==='weekly'?20:30);
+  h+=`<section><h3>Significant stories</h3>${ul(stories,i=>`<li><a href="${esc(i.link)}" target="_blank" rel="noopener">${esc(i.title)}</a> <span class="src">${esc(i.source)} · ${niceKey(nk(i))}</span></li>`,'No headlines collected for this period.')}</section>`;
+  const dbs=DEBATES.filter(d=>d.date>=p.a&&d.date<=p.b);
+  h+=`<section><h3>${st.rep==='daily'?'Developing debates':'Controversies and debates'}</h3>${(deb.length||dbs.length)?'<ul>'+deb.map(e=>`<li><b>${esc(e.parts.join(' vs '))}</b>: ${esc(e.debate.trigger)} <span class="src">${e.debate.views.length} viewpoints summarised</span></li>`).join('')+dbs.map(d=>`<li><b>${esc(d.title)}</b>${d.sport?' <span class="src">'+esc(d.sport)+'</span>':''}<br>${esc(d.trigger)}<ul style="list-style:none;padding:0;margin-top:4px">${d.views.map(v=>`<li><span class="kind k-${esc(v.kind)}">${esc(v.kind)}</span>${esc(v.text)} ${v.sources.map((u,j)=>`<a href="${esc(u)}" target="_blank" rel="noopener">[${j+1}]</a>`).join(' ')}</li>`).join('')}</ul><span class="src">${esc(d.note)}</span></li>`).join('')+'</ul>':'<p class="unv" style="margin:0">No debates summarised in this period.</p>'}</section>`;
   if(awaiting.length||review.length)h+=`<section><h3>Not yet verified</h3>${ul(awaiting.concat(review),e=>`<li>${esc(e.parts.join(' vs '))} (${esc(e.comp)}) · <span class="pill ${stClass[effStatus(e)]}">${effStatus(e)}</span></li>`,'')}</section>`;
   if(st.rep!=='daily')h+=`<section><h3>${st.rep==='weekly'?"Next week's calendar":"Next month's key events"}</h3>${ul(upcoming,line,'No tracked fixtures yet for the next period.')}</section>`;
   document.getElementById('report').innerHTML=h;}
 function stepRep(n){const c=st.repCursor;if(st.rep==='daily')st.repCursor=addDays(c,n);else if(st.rep==='weekly')st.repCursor=addDays(c,7*n);else{const [y,m]=c.split('-').map(Number);const t=new Date(Date.UTC(y,m-1+n,1,12));st.repCursor=t.toISOString().slice(0,10);}renderReport();}
 
 /* ---------- sources ---------- */
-function renderSources(){document.getElementById('srcTable').innerHTML='<thead><tr><th>Sport</th><th>Source</th><th>Type</th><th>Access</th><th>Last checked</th></tr></thead><tbody>'+SOURCES.map(s=>`<tr><td>${s[0]}</td><td><a href="${s[2]}" target="_blank" rel="noopener">${s[1]}</a></td><td>${s[3]}</td><td class="unv">To check: feed, terms, robots.txt</td><td class="unv">Never</td></tr>`).join('')+'</tbody>';}
+function renderSources(){if(STATUS.sources&&STATUS.sources.length){document.getElementById('srcTable').innerHTML='<thead><tr><th>Source</th><th>Last run</th><th>Items</th><th>Note</th></tr></thead><tbody>'+STATUS.sources.map(s=>`<tr><td>${esc(s.name)}</td><td>${s.ok?'<span class="pill st-verified">Worked</span>':'<span class="pill st-review">Failed</span>'}</td><td>${s.count}</td><td>${esc(s.note||'')}</td></tr>`).join('')+'</tbody>';return;}document.getElementById('srcTable').innerHTML='<thead><tr><th>Sport</th><th>Source</th><th>Type</th><th>Access</th><th>Last checked</th></tr></thead><tbody>'+SOURCES.map(s=>`<tr><td>${s[0]}</td><td><a href="${s[2]}" target="_blank" rel="noopener">${s[1]}</a></td><td>${s[3]}</td><td class="unv">To check: feed, terms, robots.txt</td><td class="unv">Never</td></tr>`).join('')+'</tbody>';}
 
 /* ---------- import ---------- */
 function parseCSV(t){const rows=[];let r=[],f='',q=false;for(let i=0;i<t.length;i++){const c=t[i];if(q){if(c==='"'&&t[i+1]==='"'){f+='"';i++}else if(c==='"')q=false;else f+=c}else if(c==='"')q=true;else if(c===','){r.push(f);f=''}else if(c==='\n'||c==='\r'){if(c==='\r'&&t[i+1]==='\n')i++;r.push(f);rows.push(r);r=[];f=''}else f+=c}if(f||r.length){r.push(f);rows.push(r)}return rows.filter(x=>x.some(v=>v.trim()));}
@@ -451,7 +456,7 @@ function renderReqs(){const l=document.getElementById('reqList');l.innerHTML=req
 /* ---------- wiring ---------- */
 function show(){document.querySelectorAll('[data-sec]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.sec===st.sec));['calendar','reports','sources','improve'].forEach(s=>document.getElementById('sec-'+s).hidden=s!==st.sec);
   document.querySelectorAll('[data-region]').forEach(b=>b.setAttribute('aria-selected',b.dataset.region===st.region));document.querySelector('.regions').hidden=!(st.sec==='calendar');}
-function refreshAll(){renderHealth();refreshFilters();renderFavRow();renderCalendar();renderReport();show();}
+function refreshAll(){document.getElementById('sampleBanner').hidden=!all().some(e=>e.sample);renderHealth();refreshFilters();renderFavRow();renderCalendar();renderReport();show();}
 document.addEventListener('click',ev=>{const t=ev.target.closest('button,[data-day]');if(!t)return;const d=t.dataset;
   if(d.region){st.region=d.region;store.set('region',st.region);fSport.value=fCountry.value=fComp.value='';refreshAll();}
   else if(d.sec){st.sec=d.sec;show();if(d.sec==='reports')renderReport();}
@@ -469,15 +474,18 @@ function copyText(txt,btn){const done=()=>{const o=btn.textContent;btn.textConte
 function fallback(txt){const ta=document.getElementById('impText');if(st.sec!=='sources'){alertBox('Copy is blocked here. Select the text manually.');return;}ta.value=txt;ta.select();}
 function alertBox(m){const r=document.getElementById('report');r.insertAdjacentHTML('afterbegin',`<div class="msg err">${esc(m)}</div>`);}
 repCopy.onclick=()=>copyText(document.getElementById('report').innerText,repCopy);
-recheck.onclick=()=>{refreshAll();const x=hm(new Date());recheckMsg.textContent='Checked at '+x.t+' '+x.z+'. This recomputes statuses only; fetching sources starts in stage 2.';};
+recheck.onclick=()=>{refreshAll();const x=hm(new Date());recheckMsg.textContent='Checked at '+x.t+' '+x.z+'. This recomputes statuses on this device. New data arrives with each automatic update.';};
 impRun.onclick=()=>doImport(document.getElementById('impText').value);
 impFile.onchange=e=>{const f=e.target.files[0];if(!f)return;const rd=new FileReader();rd.onload=()=>{impText.value=rd.result;doImport(rd.result)};rd.readAsText(f);e.target.value='';};
 impClear.onclick=()=>{imported=[];store.set('imported',[]);document.getElementById('impMsg').innerHTML='<div class="msg">Imported records removed. Sample data is unchanged.</div>';refreshAll();};
 reqAdd.onclick=()=>{const t=reqText.value.trim();if(!t){reqText.focus();return;}reqs.push({id:'r'+Date.now(),date:keyOf(new Date()),type:reqType.value,text:t,status:'Pending review'});store.set('reqs',reqs);reqText.value='';renderReqs();};
 reqCopy.onclick=()=>{try{navigator.clipboard.writeText(JSON.stringify(reqs,null,2)).then(()=>{reqCopy.textContent='Copied';setTimeout(()=>reqCopy.textContent='Copy all as JSON',1400)},()=>{reqText.value=JSON.stringify(reqs,null,2);reqText.select();})}catch(e){reqText.value=JSON.stringify(reqs,null,2);reqText.select();}};
 renderClock();setInterval(renderClock,30000);renderSources();renderReqs();
-async function load(){try{const r=await fetch('data/events.json',{cache:'no-cache'});const d=await r.json();SAMPLE=d.events.map(e=>Object.assign(e,{start:L(e.start_london)}));}catch(e){document.getElementById('calendar').innerHTML='<div class="msg err">Could not load the fixture data. Check your connection and reload.</div>';}
+async function load(){try{const r=await fetch('data/events.json',{cache:'no-cache'});const d=await r.json();SAMPLE=d.events.map(e=>Object.assign({watch:{uk:null,in:null},sources:[],regions:['global'],parts:[]},e,{start:e.start_utc?new Date(e.start_utc):L(e.start_london)}));}catch(e){document.getElementById('calendar').innerHTML='<div class="msg err">Could not load the fixture data. Check your connection and reload.</div>';}
  try{const r=await fetch('data/status.json',{cache:'no-cache'});if(r.ok)STATUS=await r.json();}catch(e){}
+ try{const r=await fetch('data/news.json',{cache:'no-cache'});if(r.ok)NEWS=(await r.json()).items||[];}catch(e){}
+ try{const r=await fetch('data/debates.json',{cache:'no-cache'});if(r.ok)DEBATES=(await r.json()).debates||[];}catch(e){}
+ renderSources();
  refreshAll();}
 load();
 if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(()=>{});}

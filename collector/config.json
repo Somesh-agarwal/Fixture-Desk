@@ -1,0 +1,67 @@
+{
+  "_help": "Edit this file to change what the tracker follows. Each run reads it fresh.",
+  "window_days_back": 14,
+  "window_days_ahead": 60,
+
+  "football_data": {
+    "_help": "Free key from football-data.org, saved as the repository secret FOOTBALL_DATA_KEY.",
+    "competitions": {
+      "PL": {"name": "Premier League", "regions": ["uk"]},
+      "ELC": {"name": "EFL Championship", "regions": ["uk"]},
+      "CL": {"name": "UEFA Champions League", "regions": ["global"]},
+      "WC": {"name": "FIFA World Cup", "regions": ["global"]},
+      "EC": {"name": "UEFA European Championship", "regions": ["global"]}
+    }
+  },
+
+  "cricketdata": {
+    "_help": "Free key from cricketdata.org (100 requests a day), saved as the repository secret CRICKETDATA_KEY.",
+    "pages_per_run": 3,
+    "always_keep_teams": ["India", "England", "Australia", "South Africa", "New Zealand", "Pakistan", "Sri Lanka", "West Indies", "Bangladesh", "Afghanistan", "Ireland", "Zimbabwe", "Scotland", "Netherlands"],
+    "keep_series_keywords": ["Indian Premier League", "IPL", "Women's Premier League", "The Hundred", "Ranji Trophy", "ICC", "World Cup", "Champions Trophy"]
+  },
+
+  "formula1": {"enabled": true, "regions": ["uk", "global"]},
+
+  "wikipedia_calendars": {
+    "_help": "Season calendars read from Wikipedia and turned into events by GitHub's free AI. 'search' finds the page; refresh_days controls how often it is re-read.",
+    "refresh_days": 3,
+    "pages": [
+      {"search": "2026 BWF World Tour", "sport": "Badminton", "regions": ["india", "global"], "official": "https://bwfbadminton.com"},
+      {"search": "2026 Diamond League athletics", "sport": "Athletics", "regions": ["india", "uk", "global"], "official": "https://www.diamondleague.com"},
+      {"search": "2026 ATP Tour", "sport": "Tennis", "regions": ["uk", "global"], "official": "https://www.atptour.com"},
+      {"search": "2026 WTA Tour", "sport": "Tennis", "regions": ["uk", "global"], "official": "https://www.wtatennis.com"},
+      {"search": "2025-26 Men's FIH Pro League", "sport": "Hockey", "regions": ["india", "uk", "global"], "official": "https://www.fih.hockey"},
+      {"search": "2026 World Wrestling Championships", "sport": "Wrestling", "regions": ["india", "global"], "official": "https://uww.org"},
+      {"search": "2026 ISSF World Cup shooting", "sport": "Shooting", "regions": ["india", "global"], "official": "https://www.issf-sports.org"},
+      {"search": "2026-27 Indian Super League season", "sport": "Football", "regions": ["india"], "official": "https://www.indiansuperleague.com"},
+      {"search": "2026 end-of-year rugby union internationals", "sport": "Rugby union", "regions": ["uk", "global"], "official": "https://www.world.rugby"},
+      {"search": "FIDE World Cup chess 2027 OR 2026 chess tournament calendar", "sport": "Chess", "regions": ["india", "global"], "official": "https://www.fide.com"}
+    ]
+  },
+
+  "news_feeds": [
+    {"name": "BBC Sport", "url": "https://feeds.bbci.co.uk/sport/rss.xml", "regions": ["uk", "global"]},
+    {"name": "BBC Sport Cricket", "url": "https://feeds.bbci.co.uk/sport/cricket/rss.xml", "regions": ["uk", "india", "global"]},
+    {"name": "BBC Sport Football", "url": "https://feeds.bbci.co.uk/sport/football/rss.xml", "regions": ["uk", "global"]},
+    {"name": "Google News: Indian sport", "url": "https://news.google.com/rss/search?q=India+sport+when:2d&hl=en-IN&gl=IN&ceid=IN:en", "regions": ["india"]},
+    {"name": "Google News: Indian cricket", "url": "https://news.google.com/rss/search?q=India+cricket+when:2d&hl=en-IN&gl=IN&ceid=IN:en", "regions": ["india"]},
+    {"name": "Google News: sport controversy", "url": "https://news.google.com/rss/search?q=sport+controversy+when:2d&hl=en-GB&gl=GB&ceid=GB:en", "regions": ["global"]}
+  ],
+
+  "region_rules": {
+    "india_keywords": ["India", "Indian", "IND)", "Mumbai", "Chennai", "Kolkata", "Bengaluru", "Delhi", "Hyderabad", "Punjab", "Rajasthan", "Gujarat", "Lucknow", "Kerala", "Goa", "Odisha", "Mohun Bagan", "East Bengal"],
+    "uk_keywords": ["England", "Scotland", "Wales", "Northern Ireland", "Great Britain", "GBR)", "British", "United Kingdom"],
+    "uk_countries": ["United Kingdom", "England", "Scotland", "Wales", "Northern Ireland"],
+    "india_countries": ["India"]
+  },
+
+  "ai": {
+    "_help": "GitHub's free AI (GitHub Models). Set enabled to false to switch all AI features off.",
+    "enabled": true,
+    "model": "openai/gpt-4o-mini",
+    "max_calls_per_run": 20,
+    "insights_per_run": 6,
+    "debates_per_run": 1
+  }
+}
