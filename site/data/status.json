@@ -1,19 +1,18 @@
 {
- "last_run": "1 Oct 2026, 18:43 BST",
- "last_run_utc": "2026-10-01T17:43:28Z",
+ "last_run": "1 Oct 2026, 18:48 BST",
+ "last_run_utc": "2026-10-01T17:48:33Z",
  "failed": [
   "football-data.org",
   "CricketData.org",
   "Wikipedia: 2026 BWF World Tour",
-  "Wikipedia: 2026 Diamond League athletics",
+  "Wikipedia: 2026 Diamond League",
   "Wikipedia: 2026 ATP Tour",
   "Wikipedia: 2026 WTA Tour",
-  "Wikipedia: 2026 World Wrestling Championships",
-  "Wikipedia: 2026 ISSF World Cup shooting",
-  "Wikipedia: 2026-27 Indian Super League season",
-  "Wikipedia: 2026 end-of-year rugby union internationals",
-  "Wikipedia: FIDE World Cup chess 2027 OR 2026 chess tournament calendar",
-  "AI debate summary"
+  "Wikipedia: World Wrestling Championships",
+  "Wikipedia: 2026 ISSF World Cup",
+  "Wikipedia: 2026–27 Indian Super League",
+  "Wikipedia: End-of-year rugby union internationals",
+  "Wikipedia: Chess World Cup 2000"
  ],
  "sources": [
   {
@@ -38,55 +37,55 @@
    "name": "Wikipedia: 2026 BWF World Tour",
    "ok": false,
    "count": 0,
-   "note": "RuntimeError: AI service reply was not readable (curl fallback, HTTP 200): OK\r\n"
+   "note": "RuntimeError: GitHub's AI service is not answering requests from this repository yet"
   },
   {
-   "name": "Wikipedia: 2026 Diamond League athletics",
+   "name": "Wikipedia: 2026 Diamond League",
    "ok": false,
    "count": 0,
-   "note": "RuntimeError: AI service reply was not readable (curl fallback, HTTP 200): OK\r\n"
+   "note": "AI extraction unavailable this run"
   },
   {
    "name": "Wikipedia: 2026 ATP Tour",
    "ok": false,
    "count": 0,
-   "note": "RuntimeError: AI service reply was not readable (curl fallback, HTTP 200): OK\r\n"
+   "note": "AI extraction unavailable this run"
   },
   {
    "name": "Wikipedia: 2026 WTA Tour",
    "ok": false,
    "count": 0,
-   "note": "RuntimeError: AI service reply was not readable (curl fallback, HTTP 200): OK\r\n"
+   "note": "AI extraction unavailable this run"
   },
   {
-   "name": "Wikipedia: 2026 World Wrestling Championships",
+   "name": "Wikipedia: World Wrestling Championships",
    "ok": false,
    "count": 0,
-   "note": "RuntimeError: AI service reply was not readable (curl fallback, HTTP 200): OK\r\n"
+   "note": "AI extraction unavailable this run"
   },
   {
-   "name": "Wikipedia: 2026 ISSF World Cup shooting",
+   "name": "Wikipedia: 2026 ISSF World Cup",
    "ok": false,
    "count": 0,
-   "note": "RuntimeError: AI service reply was not readable (curl fallback, HTTP 200): OK\r\n"
+   "note": "AI extraction unavailable this run"
   },
   {
-   "name": "Wikipedia: 2026-27 Indian Super League season",
+   "name": "Wikipedia: 2026–27 Indian Super League",
    "ok": false,
    "count": 0,
-   "note": "RuntimeError: AI service reply was not readable (curl fallback, HTTP 200): OK\r\n"
+   "note": "AI extraction unavailable this run"
   },
   {
-   "name": "Wikipedia: 2026 end-of-year rugby union internationals",
+   "name": "Wikipedia: End-of-year rugby union internationals",
    "ok": false,
    "count": 0,
-   "note": "RuntimeError: AI service reply was not readable (curl fallback, HTTP 200): OK\r\n"
+   "note": "AI extraction unavailable this run"
   },
   {
-   "name": "Wikipedia: FIDE World Cup chess 2027 OR 2026 chess tournament calendar",
+   "name": "Wikipedia: Chess World Cup 2000",
    "ok": false,
    "count": 0,
-   "note": "RuntimeError: AI service reply was not readable (curl fallback, HTTP 200): OK\r\n"
+   "note": "AI extraction unavailable this run"
   },
   {
    "name": "News: BBC Sport",
@@ -109,13 +108,13 @@
   {
    "name": "News: Google News: Indian sport",
    "ok": true,
-   "count": 2,
+   "count": 3,
    "note": ""
   },
   {
    "name": "News: Google News: Indian cricket",
    "ok": true,
-   "count": 5,
+   "count": 3,
    "note": ""
   },
   {
@@ -123,14 +122,8 @@
    "ok": true,
    "count": 0,
    "note": ""
-  },
-  {
-   "name": "AI debate summary",
-   "ok": false,
-   "count": 0,
-   "note": "RuntimeError: AI service reply was not readable (curl fallback, HTTP 200): OK\r\n"
   }
  ],
- "ai_calls": 10,
+ "ai_calls": 1,
  "event_count": 9
 }
