@@ -324,6 +324,9 @@ def ai(messages, max_tokens=900):
         code = out.rsplit(b"__HTTP__", 1)[-1].strip().decode() if b"__HTTP__" in out else "?"
         raw = out.rsplit(b"\n__HTTP__", 1)[0]
         LAST["meta"] = f"curl fallback, HTTP {code}"
+        if raw.strip() in (b"OK", b""):
+            a["enabled"] = False  # stop trying for the rest of this run
+            raise RuntimeError("GitHub's AI service is not answering requests from this repository yet")
     try:
         txt = json.loads(raw)["choices"][0]["message"]["content"] or ""
     except Exception:
