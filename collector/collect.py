@@ -38,6 +38,7 @@ WIN_TO = NOW + dt.timedelta(days=CFG["window_days_ahead"])
 KEEP_FROM = NOW - dt.timedelta(days=62)  # history kept for monthly reports
 
 STATUS = {"sources": [], "ai_calls": 0}
+LAST = {"meta": ""}
 
 
 def log(*a):
@@ -59,6 +60,7 @@ def http(url, headers=None, body=None, timeout=40):
         try:
             req = urllib.request.Request(url, data=data, headers=h)
             with urllib.request.urlopen(req, timeout=timeout) as r:
+                LAST["meta"] = f"status {r.status}, url {r.geturl()}, type {r.headers.get('Content-Type')}"
                 return r.read()
         except urllib.error.HTTPError as e:
             if e.code in (429, 500, 502, 503, 504) and attempt == 0:
@@ -309,11 +311,12 @@ def ai(messages, max_tokens=900):
     body = {"model": a["model"], "messages": messages, "temperature": 0.1, "max_tokens": max_tokens,
             "response_format": {"type": "json_object"}}
     raw = http("https://models.github.ai/inference/chat/completions",
-               {"Authorization": f"Bearer {tok}", "Accept": "application/json"}, body, timeout=90)
+               {"Authorization": f"Bearer {tok}", "Accept": "application/vnd.github+json",
+                "X-GitHub-Api-Version": "2022-11-28"}, body, timeout=90)
     try:
         txt = json.loads(raw)["choices"][0]["message"]["content"] or ""
     except Exception:
-        raise RuntimeError("AI service reply was not readable: " + raw[:200].decode("utf-8", "replace"))
+        raise RuntimeError("AI service reply was not readable (" + LAST["meta"] + "): " + raw[:120].decode("utf-8", "replace"))
     txt = re.sub(r"^\s*```(?:json)?\s*|\s*```\s*$", "", txt.strip())
     m = re.search(r"\{.*\}", txt, re.S)
     if not m:
