@@ -313,6 +313,17 @@ def ai(messages, max_tokens=900):
     raw = http("https://models.github.ai/inference/chat/completions",
                {"Authorization": f"Bearer {tok}", "Accept": "application/vnd.github+json",
                 "X-GitHub-Api-Version": "2022-11-28"}, body, timeout=90)
+    if raw.strip() in (b"OK", b""):
+        # Fallback transport: same request through curl, which the runner always has.
+        import subprocess
+        p = subprocess.run(["curl", "-sS", "-X", "POST", "https://models.github.ai/inference/chat/completions",
+                            "-H", f"Authorization: Bearer {tok}", "-H", "Content-Type: application/json",
+                            "-H", "Accept: application/vnd.github+json", "-w", "\n__HTTP__%{http_code}",
+                            "--data-binary", "@-"], input=json.dumps(body).encode(), capture_output=True, timeout=120)
+        out = p.stdout
+        code = out.rsplit(b"__HTTP__", 1)[-1].strip().decode() if b"__HTTP__" in out else "?"
+        raw = out.rsplit(b"\n__HTTP__", 1)[0]
+        LAST["meta"] = f"curl fallback, HTTP {code}"
     try:
         txt = json.loads(raw)["choices"][0]["message"]["content"] or ""
     except Exception:
