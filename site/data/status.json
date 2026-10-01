@@ -1,6 +1,6 @@
 {
- "last_run": "1 Oct 2026, 18:38 BST",
- "last_run_utc": "2026-10-01T17:38:51Z",
+ "last_run": "1 Oct 2026, 18:43 BST",
+ "last_run_utc": "2026-10-01T17:43:28Z",
  "failed": [
   "football-data.org",
   "CricketData.org",
@@ -38,55 +38,55 @@
    "name": "Wikipedia: 2026 BWF World Tour",
    "ok": false,
    "count": 0,
-   "note": "RuntimeError: AI service reply was not readable (status 200, url https://models.github.ai/inference/chat/completions, type text/plain): OK\r\n"
+   "note": "RuntimeError: AI service reply was not readable (curl fallback, HTTP 200): OK\r\n"
   },
   {
    "name": "Wikipedia: 2026 Diamond League athletics",
    "ok": false,
    "count": 0,
-   "note": "RuntimeError: AI service reply was not readable (status 200, url https://models.github.ai/inference/chat/completions, type text/plain): OK\r\n"
+   "note": "RuntimeError: AI service reply was not readable (curl fallback, HTTP 200): OK\r\n"
   },
   {
    "name": "Wikipedia: 2026 ATP Tour",
    "ok": false,
    "count": 0,
-   "note": "RuntimeError: AI service reply was not readable (status 200, url https://models.github.ai/inference/chat/completions, type text/plain): OK\r\n"
+   "note": "RuntimeError: AI service reply was not readable (curl fallback, HTTP 200): OK\r\n"
   },
   {
    "name": "Wikipedia: 2026 WTA Tour",
    "ok": false,
    "count": 0,
-   "note": "RuntimeError: AI service reply was not readable (status 200, url https://models.github.ai/inference/chat/completions, type text/plain): OK\r\n"
+   "note": "RuntimeError: AI service reply was not readable (curl fallback, HTTP 200): OK\r\n"
   },
   {
    "name": "Wikipedia: 2026 World Wrestling Championships",
    "ok": false,
    "count": 0,
-   "note": "RuntimeError: AI service reply was not readable (status 200, url https://models.github.ai/inference/chat/completions, type text/plain): OK\r\n"
+   "note": "RuntimeError: AI service reply was not readable (curl fallback, HTTP 200): OK\r\n"
   },
   {
    "name": "Wikipedia: 2026 ISSF World Cup shooting",
    "ok": false,
    "count": 0,
-   "note": "RuntimeError: AI service reply was not readable (status 200, url https://models.github.ai/inference/chat/completions, type text/plain): OK\r\n"
+   "note": "RuntimeError: AI service reply was not readable (curl fallback, HTTP 200): OK\r\n"
   },
   {
    "name": "Wikipedia: 2026-27 Indian Super League season",
    "ok": false,
    "count": 0,
-   "note": "RuntimeError: AI service reply was not readable (status 200, url https://models.github.ai/inference/chat/completions, type text/plain): OK\r\n"
+   "note": "RuntimeError: AI service reply was not readable (curl fallback, HTTP 200): OK\r\n"
   },
   {
    "name": "Wikipedia: 2026 end-of-year rugby union internationals",
    "ok": false,
    "count": 0,
-   "note": "RuntimeError: AI service reply was not readable (status 200, url https://models.github.ai/inference/chat/completions, type text/plain): OK\r\n"
+   "note": "RuntimeError: AI service reply was not readable (curl fallback, HTTP 200): OK\r\n"
   },
   {
    "name": "Wikipedia: FIDE World Cup chess 2027 OR 2026 chess tournament calendar",
    "ok": false,
    "count": 0,
-   "note": "RuntimeError: AI service reply was not readable (status 200, url https://models.github.ai/inference/chat/completions, type text/plain): OK\r\n"
+   "note": "RuntimeError: AI service reply was not readable (curl fallback, HTTP 200): OK\r\n"
   },
   {
    "name": "News: BBC Sport",
@@ -109,26 +109,26 @@
   {
    "name": "News: Google News: Indian sport",
    "ok": true,
-   "count": 1,
+   "count": 2,
    "note": ""
   },
   {
    "name": "News: Google News: Indian cricket",
    "ok": true,
-   "count": 3,
+   "count": 5,
    "note": ""
   },
   {
    "name": "News: Google News: sport controversy",
    "ok": true,
-   "count": 1,
+   "count": 0,
    "note": ""
   },
   {
    "name": "AI debate summary",
    "ok": false,
    "count": 0,
-   "note": "RuntimeError: AI service reply was not readable (status 200, url https://models.github.ai/inference/chat/completions, type text/plain): OK\r\n"
+   "note": "RuntimeError: AI service reply was not readable (curl fallback, HTTP 200): OK\r\n"
   }
  ],
  "ai_calls": 10,
