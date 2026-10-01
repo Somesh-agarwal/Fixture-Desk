@@ -310,8 +310,15 @@ def ai(messages, max_tokens=900):
             "response_format": {"type": "json_object"}}
     raw = http("https://models.github.ai/inference/chat/completions",
                {"Authorization": f"Bearer {tok}", "Accept": "application/json"}, body, timeout=90)
-    txt = json.loads(raw)["choices"][0]["message"]["content"]
-    return json.loads(txt)
+    try:
+        txt = json.loads(raw)["choices"][0]["message"]["content"] or ""
+    except Exception:
+        raise RuntimeError("AI service reply was not readable: " + raw[:200].decode("utf-8", "replace"))
+    txt = re.sub(r"^\s*```(?:json)?\s*|\s*```\s*$", "", txt.strip())
+    m = re.search(r"\{.*\}", txt, re.S)
+    if not m:
+        raise RuntimeError("AI reply had no JSON: " + txt[:200])
+    return json.loads(m.group(0))
 
 
 # ---------------------------------------------------------------- Wikipedia season calendars (+ free AI extraction)
