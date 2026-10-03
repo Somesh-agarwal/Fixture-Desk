@@ -1,6 +1,6 @@
 {
- "last_run": "3 Oct 2026, 12:32 BST",
- "last_run_utc": "2026-10-03T11:32:35Z",
+ "last_run": "3 Oct 2026, 20:46 BST",
+ "last_run_utc": "2026-10-03T19:46:44Z",
  "failed": [
   "football-data.org",
   "CricketData.org",
@@ -90,13 +90,13 @@
   {
    "name": "News: BBC Sport",
    "ok": true,
-   "count": 43,
+   "count": 48,
    "note": ""
   },
   {
    "name": "News: BBC Sport Cricket",
    "ok": true,
-   "count": 26,
+   "count": 31,
    "note": ""
   },
   {
@@ -108,19 +108,19 @@
   {
    "name": "News: Google News: Indian sport",
    "ok": true,
-   "count": 50,
+   "count": 32,
    "note": ""
   },
   {
    "name": "News: Google News: Indian cricket",
    "ok": true,
-   "count": 90,
+   "count": 48,
    "note": ""
   },
   {
    "name": "News: Google News: sport controversy",
    "ok": true,
-   "count": 16,
+   "count": 20,
    "note": ""
   }
  ],
