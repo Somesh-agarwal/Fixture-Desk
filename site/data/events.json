@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-03T19:46:44Z",
+ "generated_utc": "2026-10-04T01:58:31Z",
  "note": "Collected automatically from the sources listed on each event.",
  "events": [
   {
@@ -46,7 +46,7 @@
      "tier": "Official"
     }
    ],
-   "verified": "2026-10-03",
+   "verified": "2026-10-04",
    "first_seen": "2026-10-01"
   },
   {
@@ -91,7 +91,7 @@
      "tier": "Official"
     }
    ],
-   "verified": "2026-10-03",
+   "verified": "2026-10-04",
    "first_seen": "2026-10-01"
   },
   {
@@ -136,7 +136,7 @@
      "tier": "Official"
     }
    ],
-   "verified": "2026-10-03",
+   "verified": "2026-10-04",
    "first_seen": "2026-10-01"
   },
   {
@@ -181,7 +181,7 @@
      "tier": "Official"
     }
    ],
-   "verified": "2026-10-03",
+   "verified": "2026-10-04",
    "first_seen": "2026-10-01"
   },
   {
@@ -226,7 +226,7 @@
      "tier": "Official"
     }
    ],
-   "verified": "2026-10-03",
+   "verified": "2026-10-04",
    "first_seen": "2026-10-01"
   },
   {
@@ -271,7 +271,7 @@
      "tier": "Official"
     }
    ],
-   "verified": "2026-10-03",
+   "verified": "2026-10-04",
    "first_seen": "2026-10-01"
   },
   {
@@ -316,7 +316,7 @@
      "tier": "Official"
     }
    ],
-   "verified": "2026-10-03",
+   "verified": "2026-10-04",
    "first_seen": "2026-10-01"
   },
   {
@@ -361,7 +361,7 @@
      "tier": "Official"
     }
    ],
-   "verified": "2026-10-03",
+   "verified": "2026-10-04",
    "first_seen": "2026-10-01"
   },
   {
@@ -406,7 +406,7 @@
      "tier": "Official"
     }
    ],
-   "verified": "2026-10-03",
+   "verified": "2026-10-04",
    "first_seen": "2026-10-01"
   }
  ]
