@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-04T01:58:31Z",
+ "generated_utc": "2026-10-04T12:13:46Z",
  "note": "Collected automatically from the sources listed on each event.",
  "events": [
   {
@@ -64,7 +64,7 @@
    "venue": "Sepang International Circuit",
    "country": "Malaysia",
    "round": "Round 16, Bahrain Grand Prix in Malaysia (Race)",
-   "status": "Scheduled",
+   "status": "Awaiting Result",
    "notes": [],
    "uid": "f1-2026-16-race",
    "source_id": "f1",
