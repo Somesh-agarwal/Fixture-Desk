@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-07T01:47:42Z",
+ "generated_utc": "2026-10-07T13:10:46Z",
  "note": "Collected automatically from the sources listed on each event.",
  "events": [
   {
@@ -64,8 +64,10 @@
    "venue": "Sepang International Circuit",
    "country": "Malaysia",
    "round": "Round 16, Bahrain Grand Prix in Malaysia (Race)",
-   "status": "Awaiting Result",
-   "notes": [],
+   "status": "Needs Review",
+   "notes": [
+    "No result found three days after the expected finish."
+   ],
    "uid": "f1-2026-16-race",
    "source_id": "f1",
    "sport": "Motorsport",
@@ -408,6 +410,51 @@
    ],
    "verified": "2026-10-07",
    "first_seen": "2026-10-01"
+  },
+  {
+   "sample": false,
+   "watch": {
+    "uk": null,
+    "in": null
+   },
+   "disruption": null,
+   "conflict": null,
+   "result": null,
+   "debate": null,
+   "time_tbc": false,
+   "mins": 120,
+   "venue": "Yas Marina Circuit",
+   "country": "UAE",
+   "round": "Round 23, Abu Dhabi Grand Prix (Race)",
+   "status": "Scheduled",
+   "notes": [],
+   "uid": "f1-2026-23-race",
+   "source_id": "f1",
+   "sport": "Motorsport",
+   "comp": "Formula 1 World Championship",
+   "parts": [
+    "Full grid"
+   ],
+   "start_utc": "2026-12-06T13:00:00Z",
+   "regions": [
+    "uk",
+    "global"
+   ],
+   "link": "https://www.formula1.com/en/racing/2026.html",
+   "sources": [
+    {
+     "name": "Jolpica F1 data service",
+     "url": "https://api.jolpi.ca/ergast/f1/current.json",
+     "tier": "Data service"
+    },
+    {
+     "name": "Formula 1 official calendar",
+     "url": "https://www.formula1.com/en/racing/2026.html",
+     "tier": "Official"
+    }
+   ],
+   "verified": "2026-10-07",
+   "first_seen": "2026-10-07"
   }
  ]
 }
