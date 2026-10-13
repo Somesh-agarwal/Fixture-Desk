@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-13T03:10:05Z",
+ "generated_utc": "2026-10-13T14:03:04Z",
  "note": "Collected automatically from the sources listed on each event.",
  "events": [
   {
@@ -111,8 +111,10 @@
    "venue": "Marina Bay Street Circuit",
    "country": "Singapore",
    "round": "Round 17, Singapore Grand Prix (Sprint)",
-   "status": "Awaiting Result",
-   "notes": [],
+   "status": "Needs Review",
+   "notes": [
+    "No result found three days after the expected finish."
+   ],
    "uid": "f1-2026-17-sprint",
    "source_id": "f1",
    "sport": "Motorsport",
