@@ -1,6 +1,6 @@
 {
- "last_run": "14 Oct 2026, 02:22 BST",
- "last_run_utc": "2026-10-14T01:22:35Z",
+ "last_run": "14 Oct 2026, 12:40 BST",
+ "last_run_utc": "2026-10-14T11:40:36Z",
  "failed": [
   "football-data.org",
   "CricketData.org",
@@ -64,12 +64,6 @@
    "note": "AI extraction unavailable this run"
   },
   {
-   "name": "Wikipedia: 2026 U17 World Wrestling Championships",
-   "ok": true,
-   "count": 0,
-   "note": "no dates in the tracking window"
-  },
-  {
    "name": "Wikipedia: 2026 ISSF World Cup",
    "ok": false,
    "count": 0,
@@ -96,37 +90,37 @@
   {
    "name": "News: BBC Sport",
    "ok": true,
-   "count": 24,
+   "count": 42,
    "note": ""
   },
   {
    "name": "News: BBC Sport Cricket",
    "ok": true,
-   "count": 18,
+   "count": 19,
    "note": ""
   },
   {
    "name": "News: BBC Sport Football",
    "ok": true,
-   "count": 18,
+   "count": 19,
    "note": ""
   },
   {
    "name": "News: Google News: Indian sport",
    "ok": true,
-   "count": 3,
+   "count": 20,
    "note": ""
   },
   {
    "name": "News: Google News: Indian cricket",
    "ok": true,
-   "count": 16,
+   "count": 86,
    "note": ""
   },
   {
    "name": "News: Google News: sport controversy",
    "ok": true,
-   "count": 8,
+   "count": 20,
    "note": ""
   }
  ],
