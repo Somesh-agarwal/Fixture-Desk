@@ -1,18 +1,16 @@
 {
- "last_run": "14 Oct 2026, 21:35 BST",
- "last_run_utc": "2026-10-14T20:35:11Z",
+ "last_run": "15 Oct 2026, 01:49 BST",
+ "last_run_utc": "2026-10-15T00:49:58Z",
  "failed": [
   "football-data.org",
   "CricketData.org",
   "Wikipedia: 2026 BWF World Tour",
-  "Wikipedia: 2026 Diamond League",
   "Wikipedia: 2026 ATP Tour",
   "Wikipedia: 2026 WTA Tour",
   "Wikipedia: 2025–26 Men's FIH Pro League",
   "Wikipedia: 2026 ISSF World Cup",
   "Wikipedia: 2026–27 Indian Super League",
-  "Wikipedia: End-of-year rugby union internationals",
-  "Wikipedia: Chess World Cup 2000"
+  "Wikipedia: End-of-year rugby union internationals"
  ],
  "sources": [
   {
@@ -41,9 +39,9 @@
   },
   {
    "name": "Wikipedia: 2026 Diamond League",
-   "ok": false,
+   "ok": true,
    "count": 0,
-   "note": "AI extraction unavailable this run"
+   "note": "no dates in the tracking window"
   },
   {
    "name": "Wikipedia: 2026 ATP Tour",
@@ -83,44 +81,44 @@
   },
   {
    "name": "Wikipedia: Chess World Cup 2000",
-   "ok": false,
+   "ok": true,
    "count": 0,
-   "note": "AI extraction unavailable this run"
+   "note": "no dates in the tracking window"
   },
   {
    "name": "News: BBC Sport",
    "ok": true,
-   "count": 42,
+   "count": 37,
    "note": ""
   },
   {
    "name": "News: BBC Sport Cricket",
    "ok": true,
-   "count": 22,
+   "count": 25,
    "note": ""
   },
   {
    "name": "News: BBC Sport Football",
    "ok": true,
-   "count": 19,
+   "count": 14,
    "note": ""
   },
   {
    "name": "News: Google News: Indian sport",
    "ok": true,
-   "count": 17,
+   "count": 6,
    "note": ""
   },
   {
    "name": "News: Google News: Indian cricket",
    "ok": true,
-   "count": 77,
+   "count": 14,
    "note": ""
   },
   {
    "name": "News: Google News: sport controversy",
    "ok": true,
-   "count": 17,
+   "count": 12,
    "note": ""
   }
  ],
