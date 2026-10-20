@@ -1,6 +1,6 @@
 {
- "last_run": "20 Oct 2026, 02:14 BST",
- "last_run_utc": "2026-10-20T01:14:56Z",
+ "last_run": "20 Oct 2026, 12:23 BST",
+ "last_run_utc": "2026-10-20T11:23:07Z",
  "failed": [
   "football-data.org",
   "CricketData.org",
@@ -8,6 +8,7 @@
   "Wikipedia: 2026 ATP Tour",
   "Wikipedia: 2026 WTA Tour",
   "Wikipedia: 2025–26 Men's FIH Pro League",
+  "Wikipedia: 2026 U23 World Wrestling Championships",
   "Wikipedia: 2026 ISSF World Cup",
   "Wikipedia: 2026–27 Indian Super League",
   "Wikipedia: End-of-year rugby union internationals"
@@ -56,6 +57,12 @@
    "note": "AI extraction unavailable this run"
   },
   {
+   "name": "Wikipedia: 2026 U23 World Wrestling Championships",
+   "ok": false,
+   "count": 0,
+   "note": "AI extraction unavailable this run"
+  },
+  {
    "name": "Wikipedia: 2026 ISSF World Cup",
    "ok": false,
    "count": 0,
@@ -76,37 +83,37 @@
   {
    "name": "News: BBC Sport",
    "ok": true,
-   "count": 19,
+   "count": 25,
    "note": ""
   },
   {
    "name": "News: BBC Sport Cricket",
    "ok": true,
-   "count": 21,
+   "count": 18,
    "note": ""
   },
   {
    "name": "News: BBC Sport Football",
    "ok": true,
-   "count": 20,
+   "count": 22,
    "note": ""
   },
   {
    "name": "News: Google News: Indian sport",
    "ok": true,
-   "count": 5,
+   "count": 24,
    "note": ""
   },
   {
    "name": "News: Google News: Indian cricket",
    "ok": true,
-   "count": 14,
+   "count": 69,
    "note": ""
   },
   {
    "name": "News: Google News: sport controversy",
    "ok": true,
-   "count": 10,
+   "count": 16,
    "note": ""
   }
  ],
