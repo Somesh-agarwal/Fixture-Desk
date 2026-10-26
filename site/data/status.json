@@ -1,6 +1,6 @@
 {
- "last_run": "26 Oct 2026, 12:46 GMT",
- "last_run_utc": "2026-10-26T12:46:27Z",
+ "last_run": "26 Oct 2026, 21:34 GMT",
+ "last_run_utc": "2026-10-26T21:34:19Z",
  "failed": [
   "football-data.org",
   "CricketData.org",
@@ -11,7 +11,10 @@
   "Wikipedia: 2026 U23 World Wrestling Championships",
   "Wikipedia: 2026 ISSF World Cup",
   "Wikipedia: 2026–27 Indian Super League",
-  "Wikipedia: End-of-year rugby union internationals"
+  "Wikipedia: End-of-year rugby union internationals",
+  "News: Google News: Indian sport",
+  "News: Google News: Indian cricket",
+  "News: Google News: sport controversy"
  ],
  "sources": [
   {
@@ -83,7 +86,7 @@
   {
    "name": "News: BBC Sport",
    "ok": true,
-   "count": 31,
+   "count": 26,
    "note": ""
   },
   {
@@ -95,26 +98,26 @@
   {
    "name": "News: BBC Sport Football",
    "ok": true,
-   "count": 21,
-   "note": ""
-  },
-  {
-   "name": "News: Google News: Indian sport",
-   "ok": true,
    "count": 24,
    "note": ""
   },
   {
+   "name": "News: Google News: Indian sport",
+   "ok": false,
+   "count": 0,
+   "note": "HTTP 503 Service Unavailable"
+  },
+  {
    "name": "News: Google News: Indian cricket",
-   "ok": true,
-   "count": 89,
-   "note": ""
+   "ok": false,
+   "count": 0,
+   "note": "HTTP 503 Service Unavailable"
   },
   {
    "name": "News: Google News: sport controversy",
-   "ok": true,
-   "count": 14,
-   "note": ""
+   "ok": false,
+   "count": 0,
+   "note": "HTTP 503 Service Unavailable"
   }
  ],
  "ai_calls": 1,
