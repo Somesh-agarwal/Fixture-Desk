@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-28T21:37:04Z",
+ "generated_utc": "2026-10-29T01:56:29Z",
  "note": "Collected automatically from the sources listed on each event.",
  "events": [
   {
@@ -205,8 +205,10 @@
    "venue": "Circuit of the Americas",
    "country": "USA",
    "round": "Round 18, United States Grand Prix (Race)",
-   "status": "Awaiting Result",
-   "notes": [],
+   "status": "Needs Review",
+   "notes": [
+    "No result found three days after the expected finish."
+   ],
    "uid": "f1-2026-18-race",
    "source_id": "f1",
    "sport": "Motorsport",
@@ -232,7 +234,7 @@
      "tier": "Official"
     }
    ],
-   "verified": "2026-10-28",
+   "verified": "2026-10-29",
    "first_seen": "2026-10-01"
   },
   {
@@ -277,7 +279,7 @@
      "tier": "Official"
     }
    ],
-   "verified": "2026-10-28",
+   "verified": "2026-10-29",
    "first_seen": "2026-10-01"
   },
   {
@@ -322,7 +324,7 @@
      "tier": "Official"
     }
    ],
-   "verified": "2026-10-28",
+   "verified": "2026-10-29",
    "first_seen": "2026-10-01"
   },
   {
@@ -367,7 +369,7 @@
      "tier": "Official"
     }
    ],
-   "verified": "2026-10-28",
+   "verified": "2026-10-29",
    "first_seen": "2026-10-01"
   },
   {
@@ -412,7 +414,7 @@
      "tier": "Official"
     }
    ],
-   "verified": "2026-10-28",
+   "verified": "2026-10-29",
    "first_seen": "2026-10-01"
   },
   {
@@ -457,7 +459,7 @@
      "tier": "Official"
     }
    ],
-   "verified": "2026-10-28",
+   "verified": "2026-10-29",
    "first_seen": "2026-10-07"
   }
  ]
