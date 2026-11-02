@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-01T21:05:56Z",
+ "generated_utc": "2026-11-02T01:47:46Z",
  "note": "Collected automatically from the sources listed on each event.",
  "events": [
   {
@@ -234,7 +234,7 @@
      "tier": "Official"
     }
    ],
-   "verified": "2026-11-01",
+   "verified": "2026-11-02",
    "first_seen": "2026-10-01"
   },
   {
@@ -252,7 +252,7 @@
    "venue": "Autódromo Hermanos Rodríguez",
    "country": "Mexico",
    "round": "Round 19, Mexico City Grand Prix (Race)",
-   "status": "Scheduled",
+   "status": "Awaiting Result",
    "notes": [],
    "uid": "f1-2026-19-race",
    "source_id": "f1",
@@ -279,7 +279,7 @@
      "tier": "Official"
     }
    ],
-   "verified": "2026-11-01",
+   "verified": "2026-11-02",
    "first_seen": "2026-10-01"
   },
   {
@@ -324,7 +324,7 @@
      "tier": "Official"
     }
    ],
-   "verified": "2026-11-01",
+   "verified": "2026-11-02",
    "first_seen": "2026-10-01"
   },
   {
@@ -369,7 +369,7 @@
      "tier": "Official"
     }
    ],
-   "verified": "2026-11-01",
+   "verified": "2026-11-02",
    "first_seen": "2026-10-01"
   },
   {
@@ -414,7 +414,7 @@
      "tier": "Official"
     }
    ],
-   "verified": "2026-11-01",
+   "verified": "2026-11-02",
    "first_seen": "2026-10-01"
   },
   {
@@ -459,7 +459,7 @@
      "tier": "Official"
     }
    ],
-   "verified": "2026-11-01",
+   "verified": "2026-11-02",
    "first_seen": "2026-10-07"
   }
  ]
