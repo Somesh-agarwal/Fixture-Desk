@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-04T14:19:06Z",
+ "generated_utc": "2026-11-04T22:31:48Z",
  "note": "Collected automatically from the sources listed on each event.",
  "events": [
   {
@@ -252,8 +252,10 @@
    "venue": "Autódromo Hermanos Rodríguez",
    "country": "Mexico",
    "round": "Round 19, Mexico City Grand Prix (Race)",
-   "status": "Awaiting Result",
-   "notes": [],
+   "status": "Needs Review",
+   "notes": [
+    "No result found three days after the expected finish."
+   ],
    "uid": "f1-2026-19-race",
    "source_id": "f1",
    "sport": "Motorsport",
