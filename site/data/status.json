@@ -1,6 +1,6 @@
 {
- "last_run": "5 Nov 2026, 22:38 GMT",
- "last_run_utc": "2026-11-05T22:38:28Z",
+ "last_run": "6 Nov 2026, 02:47 GMT",
+ "last_run_utc": "2026-11-06T02:47:53Z",
  "failed": [
   "football-data.org",
   "CricketData.org",
@@ -37,6 +37,12 @@
    "ok": false,
    "count": 0,
    "note": "RuntimeError: GitHub's AI service is not answering requests from this repository yet"
+  },
+  {
+   "name": "Wikipedia: 2026 Diamond League",
+   "ok": true,
+   "count": 0,
+   "note": "no dates in the tracking window"
   },
   {
    "name": "Wikipedia: 2026 ATP Tour",
@@ -81,15 +87,21 @@
    "note": "AI extraction unavailable this run"
   },
   {
+   "name": "Wikipedia: Chess World Cup 2000",
+   "ok": true,
+   "count": 0,
+   "note": "no dates in the tracking window"
+  },
+  {
    "name": "News: BBC Sport",
    "ok": true,
-   "count": 33,
+   "count": 30,
    "note": ""
   },
   {
    "name": "News: BBC Sport Cricket",
    "ok": true,
-   "count": 18,
+   "count": 17,
    "note": ""
   },
   {
@@ -101,19 +113,19 @@
   {
    "name": "News: Google News: Indian sport",
    "ok": true,
-   "count": 15,
+   "count": 7,
    "note": ""
   },
   {
    "name": "News: Google News: Indian cricket",
    "ok": true,
-   "count": 25,
+   "count": 17,
    "note": ""
   },
   {
    "name": "News: Google News: sport controversy",
    "ok": true,
-   "count": 13,
+   "count": 11,
    "note": ""
   }
  ],
