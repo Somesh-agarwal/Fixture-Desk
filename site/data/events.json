@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-11T14:01:42Z",
+ "generated_utc": "2026-11-11T23:24:49Z",
  "note": "Collected automatically from the sources listed on each event.",
  "events": [
   {
@@ -299,8 +299,10 @@
    "venue": "Autódromo José Carlos Pace",
    "country": "Brazil",
    "round": "Round 20, Brazilian Grand Prix (Race)",
-   "status": "Awaiting Result",
-   "notes": [],
+   "status": "Needs Review",
+   "notes": [
+    "No result found three days after the expected finish."
+   ],
    "uid": "f1-2026-20-race",
    "source_id": "f1",
    "sport": "Motorsport",
