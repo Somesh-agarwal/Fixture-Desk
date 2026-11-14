@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-13T22:29:40Z",
+ "generated_utc": "2026-11-14T02:40:22Z",
  "note": "Collected automatically from the sources listed on each event.",
  "events": [
   {
@@ -281,7 +281,7 @@
      "tier": "Official"
     }
    ],
-   "verified": "2026-11-13",
+   "verified": "2026-11-14",
    "first_seen": "2026-10-01"
   },
   {
@@ -328,7 +328,7 @@
      "tier": "Official"
     }
    ],
-   "verified": "2026-11-13",
+   "verified": "2026-11-14",
    "first_seen": "2026-10-01"
   },
   {
@@ -373,7 +373,7 @@
      "tier": "Official"
     }
    ],
-   "verified": "2026-11-13",
+   "verified": "2026-11-14",
    "first_seen": "2026-10-01"
   },
   {
@@ -418,7 +418,7 @@
      "tier": "Official"
     }
    ],
-   "verified": "2026-11-13",
+   "verified": "2026-11-14",
    "first_seen": "2026-10-01"
   },
   {
@@ -463,7 +463,7 @@
      "tier": "Official"
     }
    ],
-   "verified": "2026-11-13",
+   "verified": "2026-11-14",
    "first_seen": "2026-10-07"
   }
  ]
