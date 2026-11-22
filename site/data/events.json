@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-22T02:37:53Z",
+ "generated_utc": "2026-11-22T14:27:42Z",
  "note": "Collected automatically from the sources listed on each event.",
  "events": [
   {
@@ -346,7 +346,7 @@
    "venue": "Las Vegas Strip Street Circuit",
    "country": "USA",
    "round": "Round 21, Las Vegas Grand Prix (Race)",
-   "status": "Scheduled",
+   "status": "Awaiting Result",
    "notes": [],
    "uid": "f1-2026-21-race",
    "source_id": "f1",
