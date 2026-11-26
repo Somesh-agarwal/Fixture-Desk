@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-11-25T17:03:57Z",
+ "generated_utc": "2026-11-26T00:55:49Z",
  "note": "Collected automatically from the sources listed on each event.",
  "events": [
   {
@@ -375,7 +375,7 @@
      "tier": "Official"
     }
    ],
-   "verified": "2026-11-25",
+   "verified": "2026-11-26",
    "first_seen": "2026-10-01"
   },
   {
@@ -420,7 +420,7 @@
      "tier": "Official"
     }
    ],
-   "verified": "2026-11-25",
+   "verified": "2026-11-26",
    "first_seen": "2026-10-01"
   },
   {
@@ -465,7 +465,7 @@
      "tier": "Official"
     }
    ],
-   "verified": "2026-11-25",
+   "verified": "2026-11-26",
    "first_seen": "2026-10-07"
   }
  ]
