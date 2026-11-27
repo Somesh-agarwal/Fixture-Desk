@@ -1,54 +1,7 @@
 {
- "generated_utc": "2026-11-27T04:31:24Z",
+ "generated_utc": "2026-11-27T16:30:18Z",
  "note": "Collected automatically from the sources listed on each event.",
  "events": [
-  {
-   "sample": false,
-   "watch": {
-    "uk": null,
-    "in": null
-   },
-   "disruption": null,
-   "conflict": null,
-   "result": null,
-   "debate": null,
-   "time_tbc": false,
-   "mins": 120,
-   "venue": "Baku City Circuit",
-   "country": "Azerbaijan",
-   "round": "Round 15, Azerbaijan Grand Prix (Race)",
-   "status": "Needs Review",
-   "notes": [
-    "No result found three days after the expected finish."
-   ],
-   "uid": "f1-2026-15-race",
-   "source_id": "f1",
-   "sport": "Motorsport",
-   "comp": "Formula 1 World Championship",
-   "parts": [
-    "Full grid"
-   ],
-   "start_utc": "2026-09-26T11:00:00Z",
-   "regions": [
-    "uk",
-    "global"
-   ],
-   "link": "https://www.formula1.com/en/racing/2026.html",
-   "sources": [
-    {
-     "name": "Jolpica F1 data service",
-     "url": "https://api.jolpi.ca/ergast/f1/current.json",
-     "tier": "Data service"
-    },
-    {
-     "name": "Formula 1 official calendar",
-     "url": "https://www.formula1.com/en/racing/2026.html",
-     "tier": "Official"
-    }
-   ],
-   "verified": "2026-10-10",
-   "first_seen": "2026-10-01"
-  },
   {
    "sample": false,
    "watch": {
